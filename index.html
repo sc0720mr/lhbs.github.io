@@ -60,13 +60,6 @@
         #schedule{color: #696969; border-collapse: collapse;}
         #schedule thead th, #schedule tbody td{padding: 8px 15px; border: 1px solid #c8c8c8; font-size: 15px; text-align: center;}
         footer{padding: 8px 20px; font-size: 11px; color: #696969; text-align: center;}
-        @media screen and (max-width:767px){#schedule{width: 100%;}}
-        @media (max-width: 320px){
-            header h1{font-size: 17px;}
-            .filterFunction, .filterFunction #dayType{font-size:13px;}
-            .fliterbtn button{font-size: 15px;}
-            #schedule thead th, #schedule tbody td{font-size: 13px;}
-        }
 
         /*CSS TAB*/
         section{display: none; border-top: 1px solid #dddddd;}
@@ -81,14 +74,21 @@
         .bus_stops_container{padding: 8px 14px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center;}
         .bus_stops{margin: 0 auto 20px; display: flex; flex-direction: column; color: #696969; width: calc(320px - 28px);}
         .bus_stops h3{margin: 5px 0 0; padding: 0; font-size: 18px;}
-        .bus_stops span{font-size:13px; color: #09bc9d;}
+        .bus_stops span{font-size:13px; color: red;}
         .bus_stops .stop_item{display: flex; flex-direction: row; align-items: center; height: 40px; font-size: 15px;}
         .bus_stops .stop_item div:first-child::before{margin: 0 0 0 8px; content: ""; width: 4px; height: 60px; display: block; background-color: #09bc9d; position: absolute; z-index: 1;}
         .bus_stops .stop_item div:first-child::after{margin: 0 5px 0 0; content:""; height: 12px; width:12px; display: block; border:4px solid #09bc9d; border-radius: 9999px; background-color: #ffffff; position: relative; z-index: 2;}
         .bus_stops .stop_item:last-child div:first-child::before{display: none;}
-
         .bus_stops.bus591 .stop_item div:first-child::before{background-color: red;}
         .bus_stops.bus591 .stop_item div:first-child::after{border-color: red;}
+
+        @media screen and (max-width:767px){#schedule{width: 100%;}}
+        @media (max-width: 320px){
+            header h1{font-size: 17px;}
+            .filterFunction, .filterFunction #dayType{font-size:13px;}
+            .fliterbtn button{font-size: 15px;}
+            #schedule thead th, #schedule tbody td{font-size: 13px;}
+        }
     </style>
     <title>水蓮山莊社區巴士及公車時刻表</title>
 </head>
