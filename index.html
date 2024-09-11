@@ -380,6 +380,10 @@
             const dayType = document.getElementById('dayType').value;
             displaySchedule(scheduleData[dayType][tripType]); // 更新顯示完整的時刻表
         });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            filterSchedule();
+        });
     </script>
 </body>
 </html>
