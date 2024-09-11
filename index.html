@@ -291,8 +291,7 @@
         function filterSchedule() {
             const tripType = document.querySelector('input[name="tripType"]:checked').value;
             const dayType = document.getElementById('dayType').value;
-            const now = new Date();
-            const currentTime = now.getHours() + ':' + ('0' + now.getMinutes()).slice(-2);
+            const now = new Date(); // 取得當前完整日期和時間
 
             const tableBody = document.querySelector('#schedule tbody');
             tableBody.innerHTML = '';
@@ -300,8 +299,21 @@
             let filteredData;
             const selectedSchedule = scheduleData[dayType][tripType];
 
-            filteredData = selectedSchedule.filter(([time]) => time >= currentTime);
+            // 使用Date物件進行時間比較
+            filteredData = selectedSchedule.filter(([time]) => {
+                const [hours, minutes] = time.split(':').map(Number);
+                const busTime = new Date(now); // 設置為當天的日期
+                busTime.setHours(hours, minutes, 0, 0);
 
+                // 如果班次時間小於當前時間，且還未過午夜，則將班次時間設為次日
+                if (busTime < now) {
+                    busTime.setDate(busTime.getDate() + 1);
+                }
+
+                return busTime >= now;
+            });
+
+            // 顯示過濾後的班次
             filteredData.forEach(([time, cartype, destination]) => {
                 const newRow = tableBody.insertRow();
                 newRow.insertCell().textContent = time;
@@ -312,6 +324,7 @@
                 }
             });
         }
+
 
         function displaySchedule(data) {
             const tableBody = document.querySelector('#schedule tbody');
