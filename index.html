@@ -28,13 +28,14 @@
     <style>
         body{margin: 0; padding: 0; background: #f7f7f7; font-family: 'Noto Sans Tc', Arial, Helvetica, sans-serif;}
         h1, p{margin: 0; padding: 0;}
-        header{padding: 8px 20px; background: #09bc9d; color: #ffffff; display: flex; flex-direction: row; align-items: flex-start; justify-content:left; flex-wrap:nowrap; text-align: left;}
+        header{margin: 0 0 3px; padding: 8px 20px; background: #09bc9d; color: #ffffff; display: flex; flex-direction: row; align-items: flex-start; justify-content:left; flex-wrap:nowrap; text-align: left;}
         header a, header a:link, header a:hover, header a:active, header a:visited{margin: auto 0 auto auto; display: block; opacity: 0.5; color:#ffffff;}
         header a i{font-size: 30px;}
         header h1{font-size: 21px;}
         header p{font-size: 15px;}
-        .filterFunction, .fliterbtn, .container{padding: 8px 14px;}
-        .filterFunction{font-size: 16px; border-bottom: 2px solid #09bc9d; text-align: center;}
+        .filterFunction{padding: 12px 14px 6px;}
+        .fliterbtn, .container{padding: 8px 14px;}
+        .filterFunction{font-size: 16px; text-align: center;}
         .filterFunction #dayType{font-size: 16px;}
         .filterFunction label + label{margin: 0 0 0 3px;}
         .fliterbtn{font-size: 13px;}
@@ -73,7 +74,7 @@
         label.visualTab{display: inline-block; margin: 0 0 -1px; padding: 5px 16px; text-align: center; color: #bbbbbb; border: 1px solid #f7f7f7; border-bottom-color: transparent;}
         label[for="tab1"]{margin-left: 20px !important;}
         label.visualTab:hover{color: #888888; cursor: pointer;}
-        input.tabTrigger:checked + label{color: #555; border: 1px solid #dddddd; border-top-width: 0; border-bottom: 1px solid #f7f7f7;}
+        input.tabTrigger:checked + label{color: #555; border: 1px solid #dddddd; border-bottom: 1px solid #f7f7f7;}
         #tab1:checked ~ #content1, #tab2:checked ~ #content2, #tab3:checked ~ #content3, #tab4:checked ~ #content4 {display: block;}
 
         /*社巴及公車站點*/
