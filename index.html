@@ -55,7 +55,7 @@
             transition: all 250ms;
         }
         .fliterbtn button i{margin-right: 3px;}
-        .container{display: flex; flex-direction: row; align-items: center; justify-content: center;}
+        .container{display: flex; flex-direction: column; align-items: center; justify-content: center;}
         #schedule{color: #696969; border-collapse: collapse;}
         #schedule thead th, #schedule tbody td{padding: 8px 15px; border: 1px solid #c8c8c8; font-size: 15px; text-align: center;}
         footer{padding: 8px 20px; font-size: 11px; color: #696969; text-align: center;}
@@ -66,6 +66,28 @@
             .fliterbtn button{font-size: 15px;}
             #schedule thead th, #schedule tbody td{font-size: 13px;}
         }
+
+        /*CSS TAB*/
+        section{display: none; border-top: 1px solid #dddddd;}
+        input.tabTrigger{display: none;}
+        label.visualTab{display: inline-block; margin: 0 0 -1px; padding: 5px 10px; text-align: center; color: #bbbbbb; border: 1px solid transparent;}
+        label[for="tab1"]{margin-left: 20px !important;}
+        label.visualTab:hover{color: #888888; cursor: pointer;}
+        input.tabTrigger:checked + label {color: #555; border: 1px solid #dddddd; border-top-width: 0; border-bottom: 1px solid #f7f7f7;}
+        #tab1:checked ~ #content1, #tab2:checked ~ #content2, #tab3:checked ~ #content3, #tab4:checked ~ #content4 {display: block;}
+
+        /*社巴及公車站點*/
+        .bus_stops_container{padding: 8px 14px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center;}
+        .bus_stops{margin: 0 auto 20px; display: flex; flex-direction: column; color: #696969; width: calc(320px - 28px);}
+        .bus_stops h3{margin: 5px 0 0; padding: 0; font-size: 18px;}
+        .bus_stops span{font-size:13px; color: #09bc9d;}
+        .bus_stops .stop_item{display: flex; flex-direction: row; align-items: center; height: 40px; font-size: 15px;}
+        .bus_stops .stop_item div:first-child::before{margin: 0 0 0 8px; content: ""; width: 4px; height: 60px; display: block; background-color: #09bc9d; position: absolute; z-index: 1;}
+        .bus_stops .stop_item div:first-child::after{margin: 0 5px 0 0; content:""; height: 12px; width:12px; display: block; border:4px solid #09bc9d; border-radius: 9999px; background-color: #ffffff; position: relative; z-index: 2;}
+        .bus_stops .stop_item:last-child div:first-child::before{display: none;}
+
+        .bus_stops.bus591 .stop_item div:first-child::before{background-color: red;}
+        .bus_stops.bus591 .stop_item div:first-child::after{border-color: red;}
     </style>
     <title>水蓮山莊社區巴士及公車時刻表</title>
 </head>
@@ -77,28 +99,201 @@
         </div>
         <a href="javascript:void(0)" onclick="resetSchedule()"><i class="fa-solid fa-rotate-right"></i></a>
     </header>
-    
-    <div class="filterFunction">
-        <select id="dayType">
-            <option value="workday">平日</option>
-            <option value="holiday">假日</option>
-        </select>
-        <label><input type="radio" name="tripType" value="to" checked> 去程(水蓮出發)</label>
-        <label><input type="radio" name="tripType" value="from"> 回程(返回水蓮)</label>
-    </div>
 
-    <div class="fliterbtn">
-        <button onclick="filterSchedule()"><i class="fa-solid fa-magnifying-glass"></i>以現在時間搜尋最接近班次</button>
-    </div>
+    <input id="tab1" type="radio" name="tabs" class="tabTrigger" checked>
+    <label for="tab1" class="visualTab"><i class="fa-solid fa-clock"></i> 時刻表</label>
+    <input id="tab2" type="radio" name="tabs" class="tabTrigger" >
+    <label for="tab2" class="visualTab"><i class="fa-solid fa-location-dot"></i> 停站點</label>
 
-    <div class="container">
-        <table id="schedule">
-            <thead>
-                <tr><th>時間</th><th>車輛</th><th>出發地➡︎目的地</th></tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-    </div>
+    <section id="content1">
+        <div class="filterFunction">
+            <select id="dayType">
+                <option value="workday">平日</option>
+                <option value="holiday">假日</option>
+            </select>
+            <label><input type="radio" name="tripType" value="to" checked> 去程(水蓮出發)</label>
+            <label><input type="radio" name="tripType" value="from"> 回程(返回水蓮)</label>
+        </div>
+
+        <div class="fliterbtn">
+            <button onclick="filterSchedule()"><i class="fa-solid fa-magnifying-glass"></i>以現在時間搜尋最接近班次</button>
+        </div>
+
+        <div class="container">
+            <table id="schedule">
+                <thead>
+                    <tr><th>時間</th><th>車輛</th><th>出發地➡︎目的地</th></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="content2">
+        <div class="bus_stops_container">
+            <div class="bus_stops">
+                <h3>社巴平日去程</h3>
+                <span>走汐湖二橋不經東湖</span>
+                <div class="stop_item">
+                    <div></div>
+                    <div>水蓮山莊</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>金龍里</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>民族六街市場口</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>金龍國小</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>西陵科學園區</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>東湖捷運站</div>
+                </div>
+            </div>
+
+            <div class="bus_stops">
+                <h3>社巴平日回程</h3>
+                <span>經東湖，康寧路轉明峰街</span>
+                <div class="stop_item">
+                    <div></div>
+                    <div>東湖捷運站</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>五分社區(寶島鐘錶旁)</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>東湖國小(東湖路126號前)</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>西陵科學園區</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>金龍國小(OK便利商店前 - 明峰街281號)</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>民族六街市場口</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>金龍里(家樂福)</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>水蓮山莊</div>
+                </div>
+            </div>
+
+            <div class="bus_stops bus591">
+                <h3>591公車及社巴假日去程</h3>
+                <div class="stop_item">
+                    <div></div>
+                    <div>水蓮山莊</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>金龍里</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>民族六街市場口</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>金龍國小</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>西陵科學園區</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>東湖國小</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>五分社區</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>東湖捷運站</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>南港軟體園區北站</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>南港軟體園區南站</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>南港火車站</div>
+                </div>
+            </div>
+
+            <div class="bus_stops bus591">
+                <h3>591公車及社巴假日回程</h3>
+                <div class="stop_item">
+                    <div></div>
+                    <div>南港火車站</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>南港軟體園區南站</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>南港軟體園區北站</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>東湖捷運站</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>五分社區(寶島鐘錶旁)</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>東湖國小(東湖路126號前)</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>西陵科學園區</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>金龍國小(OK便利商店前 - 明峰街281號)</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>民族六街市場口</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>金龍里(家樂福)</div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div>水蓮山莊</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer>
         <div>Ver. 113.01.18 / Build：2024.09.11(Beta)</div>
