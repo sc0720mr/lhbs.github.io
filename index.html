@@ -71,7 +71,7 @@
             <h1>水蓮山莊社區巴士及公車時刻表</h1>
             <p>Lotus Hill Bus Schedule</p>
         </div>
-        <a onClick="window.location.reload()"><i class="fa-solid fa-rotate-right"></i></a>
+        <a href="javascript:void(0)" onclick="resetSchedule()"><i class="fa-solid fa-rotate-right"></i></a>
     </header>
     
     <div class="filterFunction">
@@ -307,6 +307,14 @@
             });
         }
 
+        // 重置時刻表，顯示完整的時刻表
+        function resetSchedule() {
+            const tripType = document.querySelector('input[name="tripType"]:checked').value;
+            const dayType = document.getElementById('dayType').value;
+            displaySchedule(scheduleData[dayType][tripType]); // 顯示完整的時刻表
+        }
+
+        // 篩選最近班次的函數
         function filterSchedule() {
             const tripType = document.querySelector('input[name="tripType"]:checked').value;
             const dayType = document.getElementById('dayType').value;
