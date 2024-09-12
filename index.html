@@ -26,7 +26,7 @@
     <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
     <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
     <style>
-        body{margin: 0; padding: 0; background: #f7f7f7; font-family: 'Noto Sans Tc', Arial, Helvetica, sans-serif;}
+        body{margin: 0; padding: 0; background: #f7f7f7; font-family: 'Noto Sans Tc', Arial, Helvetica, sans-serif; color: #696969;}
         h1, p{margin: 0; padding: 0;}
 
         /*Header*/
@@ -35,6 +35,16 @@
         header a i{font-size: 30px;}
         header h1{font-size: 21px;}
         header p{font-size: 15px;}
+        footer{padding: 8px 20px; font-size: 11px; color: #696969; text-align: center;}
+
+        /*CSS TAB*/
+        section{display: none; border-top: 1px solid #dddddd;}
+        input.tabTrigger{display: none;}
+        label.visualTab{display: inline-block; margin: 0 0 -1px; padding: 5px 16px; text-align: center; color: #bbbbbb; border: 1px solid #f7f7f7; border-bottom-color: transparent;}
+        label[for="tab1"]{margin-left: 20px !important;}
+        label.visualTab:hover{color: #888888; cursor: pointer;}
+        input.tabTrigger:checked + label{color: #555; border: 1px solid #dddddd; border-bottom: 1px solid #f7f7f7;}
+        #tab1:checked ~ #content1, #tab2:checked ~ #content2, #tab3:checked ~ #content3, #tab4:checked ~ #content4 {display: block;}
 
         /*篩選功能*/
         .filterFunction{padding: 12px 14px 6px;}
@@ -48,18 +58,8 @@
         
         /*時刻表*/
         .container{display: flex; flex-direction: column; align-items: center; justify-content: center;}
-        #schedule{color: #696969; border-collapse: collapse;}
+        #schedule{border-collapse: collapse;}
         #schedule thead th, #schedule tbody td{padding: 8px 15px; border: 1px solid #c8c8c8; font-size: 15px; text-align: center;}
-        footer{padding: 8px 20px; font-size: 11px; color: #696969; text-align: center;}
-
-        /*CSS TAB*/
-        section{display: none; border-top: 1px solid #dddddd;}
-        input.tabTrigger{display: none;}
-        label.visualTab{display: inline-block; margin: 0 0 -1px; padding: 5px 16px; text-align: center; color: #bbbbbb; border: 1px solid #f7f7f7; border-bottom-color: transparent;}
-        label[for="tab1"]{margin-left: 20px !important;}
-        label.visualTab:hover{color: #888888; cursor: pointer;}
-        input.tabTrigger:checked + label{color: #555; border: 1px solid #dddddd; border-bottom: 1px solid #f7f7f7;}
-        #tab1:checked ~ #content1, #tab2:checked ~ #content2, #tab3:checked ~ #content3, #tab4:checked ~ #content4 {display: block;}
 
         /*社巴及公車站點*/
         .bus_stops_container{padding: 8px 14px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center;}
@@ -72,6 +72,22 @@
         .bus_stops .stop_item:last-child div:first-child::before{display: none;}
         .bus_stops.bus591 .stop_item div:first-child::before{background-color: red;}
         .bus_stops.bus591 .stop_item div:first-child::after{border-color: red;}
+
+        /*關於*/
+        .about_container{padding: 8px 24px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; font-size: 15px; line-height: 175%;}
+        .about_container p{margin: 0 0 16px;}
+
+        .contact_info{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+        }
+        .about_container dl, .about_container dt, .about_container dd{margin: 0; padding: 0;}
+        .about_container dt{font-weight: bold;}
+
 
         /*Media Query*/
         @media screen and (max-width:767px){
@@ -99,6 +115,8 @@
     <label for="tab1" class="visualTab"><i class="fa-solid fa-clock"></i> 時刻表</label>
     <input id="tab2" type="radio" name="tabs" class="tabTrigger" >
     <label for="tab2" class="visualTab"><i class="fa-solid fa-location-dot"></i> 停站點</label>
+    <input id="tab3" type="radio" name="tabs" class="tabTrigger" >
+    <label for="tab3" class="visualTab"><i class="fa-solid fa-circle-info"></i> 關於</label>
 
     <section id="content1">
         <div class="filterFunction">
@@ -286,6 +304,22 @@
                     <div></div>
                     <div>水蓮山莊</div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="content3">
+        <div class="about_container">
+            <h3>關於時刻表</h3>
+            <p>尊敬的住戶們，大家好。</p>
+            <p>此時刻表設計由城事國際物業管理公司提供，班次時刻表資訊是對照水蓮山莊管理委員會的水蓮山莊社區巴士時刻表，若有時刻表任何建議或疑問，歡迎不吝指教，並可透過下方聯繫資訊與我們聯繫，謝謝您。</p>
+            <div class="contact_info">
+                <img src="line_sc54007.JPG" alt="QRcode" width="80" height="80" />
+                <dl>
+                    <dt>營業員 張瀚文</dt>
+                    <dd><i class="fa-solid fa-phone"></i> <a href="tel:+886-987305186">0987-305-186</a></dd>
+                    <dd><i class="fa-brands fa-line"></i> <a href="https://line.me/ti/p/8xW4AaGfQ1" target="_blank">sc54007</a></dd>
+                </dl>
             </div>
         </div>
     </section>
