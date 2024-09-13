@@ -53,7 +53,7 @@
         
         /*時刻表*/
         .container{display: flex; flex-direction: column; align-items: center; justify-content: center;}
-        #schedule{border-collapse: collapse; width: clamp(320px, 100%, 1024px)}
+        #schedule{border-collapse: collapse; width: 100%;}
         #schedule thead th, #schedule tbody td{padding: 8px 15px; border: 1px solid #c8c8c8; text-align: center;}
 
         /*社巴及公車站點*/
@@ -103,9 +103,6 @@
         .about_container{font-size: 0.9375rem;} /*15px*/
 
         /*Media Query*/
-        @media screen and (max-width:767px){
-            #schedule{width: 100%;}
-        }
         @media (max-width: 320px){
             header h1{font-size: 1.0625rem;} /*17px*/
             .filterFunction, .filterFunction #dayType{font-size: 0.8125rem;} /*13px*/
@@ -338,7 +335,7 @@
     </section>
 
     <footer>
-        <div>Ver. 113.01.18 / Build：2024.09.11(Beta)</div>
+        <div>Ver. 113.01.18 / Build：2024.09.13(Beta)</div>
         <div>Copyright &copy; 2024 Steven Chang. All rights reserved.</div>
     </footer>
 
