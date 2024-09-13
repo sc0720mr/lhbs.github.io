@@ -32,10 +32,7 @@
         /*Header*/
         header{margin: 0 0 3px; padding: 8px 20px; background: #09bc9d; color: #ffffff; display: flex; flex-direction: row; align-items: flex-start; justify-content:left; flex-wrap:nowrap; text-align: left;}
         header a, header a:link, header a:hover, header a:active, header a:visited{margin: auto 0 auto auto; display: block; opacity: 0.5; color:#ffffff;}
-        header a i{font-size: 30px;}
-        header h1{font-size: 21px;}
-        header p{font-size: 15px;}
-        footer{padding: 8px 20px; font-size: 11px; color: #696969; text-align: center;}
+        footer{padding: 8px 20px; color: #696969; text-align: center;}
 
         /*CSS TAB*/
         section{display: none; border-top: 1px solid #dddddd;}
@@ -49,24 +46,22 @@
         /*篩選功能*/
         .filterFunction{padding: 12px 14px 6px;}
         .fliterbtn, .container{padding: 8px 14px;}
-        .filterFunction{font-size: 16px; text-align: center;}
-        .filterFunction #dayType{font-size: 16px;}
+        .filterFunction{text-align: center;}
         .filterFunction label + label{margin: 0 0 0 3px;}
-        .fliterbtn{font-size: 13px;}
-        .fliterbtn button{ width: 100%; height: 36px; align-items: center; background-color: #fa6400; border-radius: .25rem; border: 1px solid #da5701; /*box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;*/ color: #fff; cursor: pointer; display: inline-flex; font-size: 16px; font-weight: 600; justify-content: center; transition: all 250ms; }
+        .fliterbtn button{ width: 100%; height: 36px; align-items: center; background-color: #fa6400; border-radius: .25rem; border: 1px solid #da5701; /*box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;*/ color: #fff; cursor: pointer; display: inline-flex; font-weight: 600; justify-content: center; transition: all 250ms; }
         .fliterbtn button i{margin-right: 3px;}
         
         /*時刻表*/
         .container{display: flex; flex-direction: column; align-items: center; justify-content: center;}
         #schedule{border-collapse: collapse;}
-        #schedule thead th, #schedule tbody td{padding: 8px 15px; border: 1px solid #c8c8c8; font-size: 15px; text-align: center;}
+        #schedule thead th, #schedule tbody td{padding: 8px 15px; border: 1px solid #c8c8c8; text-align: center;}
 
         /*社巴及公車站點*/
         .bus_stops_container{padding: 8px 14px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center;}
         .bus_stops{margin: 0 auto 20px; display: flex; flex-direction: column; color: #696969; width: calc(320px - 28px);}
-        .bus_stops h3{margin: 5px 0 0; padding: 0; font-size: 18px;}
+        .bus_stops h3{margin: 5px 0 0; padding: 0;}
         .bus_stops span{font-size:13px; color: red;}
-        .bus_stops .stop_item{display: flex; flex-direction: row; align-items: center; height: 40px; font-size: 15px;}
+        .bus_stops .stop_item{display: flex; flex-direction: row; align-items: center; height: 40px;}
         .bus_stops .stop_item div:first-child::before{margin: 0 0 0 8px; content: ""; width: 4px; height: 60px; display: block; background-color: #09bc9d; position: absolute; z-index: 1;}
         .bus_stops .stop_item div:first-child::after{margin: 0 5px 0 0; content:""; height: 12px; width:12px; display: block; border:4px solid #09bc9d; border-radius: 9999px; background-color: #ffffff; position: relative; z-index: 2;}
         .bus_stops .stop_item:last-child div:first-child::before{display: none;}
@@ -74,7 +69,7 @@
         .bus_stops.bus591 .stop_item div:first-child::after{border-color: red;}
 
         /*關於*/
-        .about_container{padding: 8px 24px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; font-size: 15px; line-height: 175%;}
+        .about_container{padding: 8px 24px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; line-height: 175%;}
         .about_container p{margin: 0 0 16px;}
 
         .contact_info{
@@ -88,16 +83,34 @@
         .about_container dl, .about_container dt, .about_container dd{margin: 0; padding: 0;}
         .about_container dt{font-weight: bold;}
 
+        /*Font Size*/
+        body{font-size: 16px;}
+        header a i{font-size: 1.875rem;} /*30px*/
+        header h1{font-size: 1.3125rem;} /*21px*/
+        header p{font-size: 0.9375rem;} /*15px*/
+        footer{font-size: 0.6875rem;} /*11px*/
+
+        .filterFunction{font-size: 1rem;} /*16px*/
+        .filterFunction #dayType{font-size: 1rem;} /*16px*/
+        .fliterbtn{font-size: 0.8125rem;} /*13px*/
+        .fliterbtn button{font-size: 1rem;}  /*16px*/
+
+        #schedule thead th, #schedule tbody td{font-size: 0.9375rem;} /*15px*/
+
+        .bus_stops h3{font-size: 1.125rem;} /*18px*/
+        .bus_stops .stop_item{font-size: 0.9375rem;} /*15px*/
+
+        .about_container{font-size: 0.9375rem;} /*15px*/
 
         /*Media Query*/
         @media screen and (max-width:767px){
             #schedule{width: 100%;}
         }
         @media (max-width: 320px){
-            header h1{font-size: 17px;}
-            .filterFunction, .filterFunction #dayType{font-size:13px;}
-            .fliterbtn button{font-size: 15px;}
-            #schedule thead th, #schedule tbody td{font-size: 13px;}
+            header h1{font-size: 1.0625rem;} /*17px*/
+            .filterFunction, .filterFunction #dayType{font-size: 0.8125rem;} /*13px*/
+            .fliterbtn button{font-size: 0.9375rem;} /*15px*/
+            #schedule thead th, #schedule tbody td{font-size: 0.8125rem;} /*13px*/
         }
     </style>
     <title>水蓮山莊社區巴士及公車時刻表</title>
