@@ -335,7 +335,7 @@
     </section>
 
     <footer>
-        <div>Ver. 113.01.18 / Build：2024.09.13(Beta)</div>
+        <div>Ver. 113.01.18 / Build：2024.09.14(Beta)</div>
         <div>Copyright &copy; 2024 Steven Chang. All rights reserved.</div>
     </footer>
 
@@ -558,40 +558,6 @@
             const dayType = document.getElementById('dayType').value;
             const now = new Date(); // 取得當前完整日期和時間
 
-            const tableBody = document.querySelector('#schedule tbody');
-            tableBody.innerHTML = ''; // 清空表格
-
-            const selectedSchedule = scheduleData[dayType][tripType];
-
-            // 過濾出比當前時間晚的班次
-            const filteredData = selectedSchedule.filter(([time]) => {
-                const [hours, minutes] = time.split(':').map(Number);
-                const busTime = new Date(now); // 設置班次時間為當天的日期
-                busTime.setHours(hours, minutes, 0, 0);
-
-                // 如果班次時間早於當前時間，則過濾掉
-                return busTime >= now;
-            });
-
-            // 顯示過濾後的班次
-            filteredData.forEach(([time, cartype, destination]) => {
-                const newRow = tableBody.insertRow();
-                newRow.insertCell().textContent = time;
-                newRow.insertCell().textContent = cartype;
-                newRow.insertCell().textContent = destination;
-
-                if (cartype === "591") {
-                    newRow.style.color = "red";
-                }
-            });
-        }
-
-        // 篩選最近班次的函數
-        function filterSchedule() {
-            const tripType = document.querySelector('input[name="tripType"]:checked').value;
-            const dayType = document.getElementById('dayType').value;
-            const now = new Date(); // 取得當前完整日期和時間
-
             const selectedSchedule = scheduleData[dayType][tripType];
 
             // 過濾出比當前時間晚的班次
@@ -610,28 +576,18 @@
 
         // 網頁載入時顯示完整的時刻表
         document.addEventListener('DOMContentLoaded', () => {
-            const tripType = document.querySelector('input[name="tripType"]:checked').value;
-            const dayType = document.getElementById('dayType').value;
-            displaySchedule(scheduleData[dayType][tripType]); // 顯示初始完整時刻表
+            resetSchedule(); // 顯示初始完整時刻表
         });
 
         // 切換去程/回程或平日/假日時，顯示對應的完整時刻表
         document.querySelectorAll('input[name="tripType"]').forEach(radio => {
             radio.addEventListener('change', () => {
-                const tripType = document.querySelector('input[name="tripType"]:checked').value;
-                const dayType = document.getElementById('dayType').value;
-                displaySchedule(scheduleData[dayType][tripType]); // 更新顯示完整的時刻表
+                resetSchedule(); // 更新顯示完整的時刻表
             });
         });
 
         document.getElementById('dayType').addEventListener('change', () => {
-            const tripType = document.querySelector('input[name="tripType"]:checked').value;
-            const dayType = document.getElementById('dayType').value;
-            displaySchedule(scheduleData[dayType][tripType]); // 更新顯示完整的時刻表
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            filterSchedule();
+            resetSchedule(); // 更新顯示完整的時刻表
         });
     </script>
 </body>
