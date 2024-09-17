@@ -59,6 +59,10 @@
 
         /*社巴及公車站點*/
         .bus_stops_container{padding: 8px 14px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center;}
+        .anchor_busstops{display: flex; flex-direction: row; flex-wrap: nowrap; align-items: center; justify-content: center; }
+        .anchor_busstops a{display: inline-block; margin: 8px 10px 0; padding: 3px 10px; outline:none;}
+        .anchor_busstops a:link, .anchor_busstops a:visited, .anchor_busstops a:hover{color:#4285f4;}
+        .anchor_busstops a:active{text-decoration: none;}
         .bus_stops{margin: 0 auto 20px; display: flex; flex-direction: column; color: #696969; width: calc(320px - 28px);}
         .bus_stops h3{margin: 5px 0 0; padding: 0;}
         .bus_stops span{font-size:13px; color: red;}
@@ -107,6 +111,7 @@
 
         #schedule thead th, #schedule tbody td{font-size: 0.9375rem;} /*15px*/
 
+        .anchor_busstops{font-size: 0.9375rem;}
         .bus_stops h3{font-size: 1.125rem;} /*18px*/
         .bus_stops .stop_item{font-size: 0.9375rem;} /*15px*/
 
@@ -164,8 +169,14 @@
     </section>
 
     <section id="content2">
+        <div class="anchor_busstops">
+            <a href="#bc_stops">社巴</a>
+            <a href="#b591_stops">591</a>
+            <a href="#bf913e_stops">F913延</a>
+            <a href="#bf913_stops">F913</a>
+        </div>
         <div class="bus_stops_container">
-            <div class="bus_stops">
+            <div class="bus_stops" id="bc_stops">
                 <h3>社巴平日去程</h3>
                 <span>走汐湖二橋不經東湖</span>
                 <div class="stop_item">
@@ -231,7 +242,7 @@
                 </div>
             </div>
 
-            <div class="bus_stops bus591">
+            <div class="bus_stops bus591" id="b591_stops">
                 <h3>591公車平日及社巴假日去程</h3>
                 <div class="stop_item">
                     <div></div>
@@ -327,7 +338,7 @@
                 </div>
             </div>
 
-            <div class="bus_stops busF913">
+            <div class="bus_stops busF913" id="bf913e_stops">
                 <h3>F913社后線延(忠三街口)公車平日及假日去程</h3>
                 <span>國泰醫院至水蓮約20分，不含塞車及停靠站時間</span>
                 <div class="stop_item">
@@ -661,7 +672,7 @@
                 </div>
             </div>
 
-            <div class="bus_stops busF913">
+            <div class="bus_stops busF913" id="bf913_stops">
                 <h3>F913社后線公車平日及假日去程</h3>
                 <span>至水蓮約23分，不含塞車及停靠站時間</span>
                 <div class="stop_item">
