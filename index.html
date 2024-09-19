@@ -34,6 +34,23 @@
                 transform: rotateY(360deg);
             }
         }
+        @keyframes flipAnimation {
+            0% {
+                transform: rotateX(90deg);
+                opacity: 0;
+            }
+            100% {
+                transform: rotateX(0deg);
+                opacity: 1;
+            }
+        }
+
+        tbody tr {
+            transform-origin: bottom;
+            opacity: 0; /* 開始時設置為透明 */
+            animation: flipAnimation 0.5s ease forwards; /* 設置翻轉動畫 */
+        }
+
         body{margin: 0; padding: 0; background: #f7f7f7; font-family: 'Noto Sans Tc', Arial, Helvetica, sans-serif; color: #696969;}
         h1, p{margin: 0; padding: 0;}
         .hr-solid{border: 0; border-top: 1px solid #ddd; width: 100%;}
@@ -64,7 +81,7 @@
         /*時刻表*/
         .container{display: flex; flex-direction: column; align-items: center; justify-content: center;}
         #schedule{border-collapse: collapse; width: 100%;}
-        #schedule thead th, #schedule tbody td{padding: 8px; border: 1px solid #c8c8c8; text-align: center;}
+        #schedule thead th, #schedule tbody td{padding: 8px; border: 1px solid #ddd; text-align: center;}
 
         /*社巴及公車站點*/
         .bus_stops_container{padding: 8px 14px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center;}
@@ -1055,7 +1072,7 @@
     </section>
 
     <footer>
-        <div>Ver. 113.09.18 / Build：2024.09.18(Beta)</div>
+        <div>Ver. 113.09.18 / Build：2024.09.19(Beta)</div>
         <div>Copyright &copy; 2024 Steven Chang. All rights reserved.</div>
     </footer>
 
@@ -1312,6 +1329,7 @@
                 } else if (cartype === "F913" || cartype === "F913延") {
                     newRow.style.color = "#036eb8";
                 }
+                applyFlipAnimation();
             });
         }
 
@@ -1439,6 +1457,28 @@
             resetAutoPlay('iosSlider');  // 啟動 iOS 自動播放
             resetAutoPlay('androidSlider');  // 啟動 Android 自動播放
         });
+    </script>
+    <script>
+    // 此函數將逐行應用翻轉動畫
+    function applyFlipAnimation() {
+        const rows = document.querySelectorAll("tbody tr");
+        rows.forEach((row, index) => {
+            // 清除任何現有的動畫
+            row.style.animation = 'none';
+            row.style.opacity = 0;  // 確保一開始是透明的
+            row.offsetHeight; // 觸發重繪，讓動畫可以重新應用
+            
+            // 計算延遲時間，讓每行依次翻轉
+            const delay = index * 0.1; // 每行延遲0.2秒
+            row.style.animation = `flipAnimation 0.5s ease forwards`;
+            row.style.animationDelay = `${delay}s`;
+        });
+    }
+
+    // 當頁面載入時初始化
+    document.addEventListener("DOMContentLoaded", () => {
+        applyFlipAnimation();
+    });
     </script>
 </body>
 </html>
