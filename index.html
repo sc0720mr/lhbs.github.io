@@ -60,6 +60,21 @@
         header a, header a:link, header a:hover, header a:active, header a:visited{margin: auto 0 auto auto; display: block; opacity: 0.5; color:#ffffff;}
         footer{padding: 8px 20px; color: #696969; text-align: center;}
 
+        /*Warning*/
+        #warning{margin-bottom:5px; padding: 0px 5px 3px; color: #da5701; background-color: khaki;}
+        .warningInfo {
+            animation: marquee 12s linear infinite;
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
         /*CSS TAB*/
         section{display: none; border-top: 1px solid #dddddd;}
         input.tabTrigger{display: none;}
@@ -131,6 +146,8 @@
         header p{font-size: 0.9375rem;} /*15px*/
         footer{font-size: 0.6875rem;} /*11px*/
 
+        #warning{font-size: 0.8125rem;} /*13px*/
+
         .filterFunction, .filterFunction #dayType{font-size: clamp(13px, 4.0625vw, 16px);}
         .fliterbtn{font-size: 0.8125rem;} /*13px*/
         .fliterbtn button{font-size: clamp(15px, 4.6875vw, 16px);}
@@ -155,6 +172,11 @@
         </div>
         <a href="javascript:void(0)" onclick="resetSchedule()"><i class="fa-solid fa-rotate-right"></i></a>
     </header>
+    <div id="warning" style="display: none;">
+        <div class="warningInfo">
+            注意：目前顯示為颱風時刻表，班次有變動，請留意！
+        </div>
+    </div>
 
     <input id="tab1" type="radio" name="tabs" class="tabTrigger" checked>
     <label for="tab1" class="visualTab"><i class="fa-solid fa-clock"></i> 時刻表</label>
@@ -1087,6 +1109,15 @@
             return isTyphoonDay() ? typhoonSchedule : normalSchedule;
         }
 
+        function showTyphoonWarning(isTyphoon) {
+            const warningBanner = document.getElementById("warning");
+            if (isTyphoon) {
+                warningBanner.style.display = "block";
+            } else {
+                warningBanner.style.display = "none";
+            }
+        }
+
         const normalSchedule = {
             workday: {
                 to: [
@@ -1631,6 +1662,8 @@
 
         // 網頁載入時顯示完整的時刻表
         document.addEventListener('DOMContentLoaded', () => {
+            const isTyphoon = isTyphoonDay();
+            showTyphoonWarning(isTyphoon);
             resetSchedule(); // 顯示初始完整時刻表
         });
 
