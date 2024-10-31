@@ -1100,8 +1100,9 @@
 
     <script>
         function isTyphoonDay() {
-            const today = new Date().toISOString().split('T')[0];
-            const typhoonDays = [""]; // 設定颱風日的日期 (請修改成實際的颱風日)
+            const today = new Date().toLocaleDateString('zh-TW', { timeZone: 'Asia/Taipei' });
+            const typhoonDays = ["2024/11/2"]; // 設定颱風日的日期
+            //console.log("Today's date:", today); // 顯示 today 的值
             return typhoonDays.includes(today);
         }
 
