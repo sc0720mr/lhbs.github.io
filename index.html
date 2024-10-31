@@ -1077,8 +1077,17 @@
     </footer>
 
     <script>
-        /*
-        const scheduleData = {
+        function isTyphoonDay() {
+            const today = new Date().toISOString().split('T')[0];
+            const typhoonDays = ["2024-10-31", "2024-10-31"]; // 設定颱風日的日期 (請修改成實際的颱風日)
+            return typhoonDays.includes(today);
+        }
+
+        function getCurrentSchedule() {
+            return isTyphoonDay() ? typhoonSchedule : normalSchedule;
+        }
+
+        const normalSchedule = {
             workday: {
                 to: [
                 ["06:10", "社巴", "水蓮➡︎往東湖捷運站"],
@@ -1312,9 +1321,9 @@
                 ["22:45", "社巴", "東湖捷運站➡︎水蓮"]
                 ]
             }
-        };*/
+        };
 
-        const scheduleData = {
+        const typhoonSchedule = {
             workday: {
                 to: [
                 ["06:10", "社巴", "停駛"],
@@ -1469,9 +1478,9 @@
                 ["06:25", "F913", "停駛"],
                 ["06:30", "社巴", "停駛"],
                 ["06:50", "F913延", "停駛"],
-                ["17:00", "591", "水蓮➡︎往南港火車站"],
+                ["07:00", "591", "水蓮➡︎往南港火車站"],
                 ["07:30", "社巴", "停駛"],
-                ["17:00", "591", "水蓮➡︎往南港火車站"],
+                ["08:00", "591", "水蓮➡︎往南港火車站"],
                 ["08:25", "F913", "停駛"],
                 ["08:30", "社巴", "停駛"],
                 ["08:50", "F913延", "停駛"],
@@ -1567,32 +1576,7 @@
             }
         };
 
-        /*// 初始化當前時刻表為 scheduleArrayNormal
-        let scheduleData = scheduleArrayNormal;
-
-        // 設定切換的目標日期，例如 2024 年 11 月 1 日
-        const targetDate = new Date("2024-10-31");
-
-        // 函數：檢查當前日期是否符合目標日期，符合時切換陣列
-        function checkDate() {
-            // 定義 today 並設置為無時間資訊的日期格式
-            const today = new Date();
-            today.setHours(0, 0, 0, 0); // 清除時間部分，僅保留日期
-
-            if (today.getTime() === targetDate.getTime()) {
-                scheduleData = scheduleArrayTyphoon; // 符合日期時切換為另一天的陣列
-                console.log("已切換為台風期間時刻表");
-            } else {
-                scheduleData = scheduleArrayNormal; // 否則使用正常陣列
-            }
-        }
-
-        // 頁面加載時立即檢查一次日期
-        checkDate();
-
-        // 設置每日檢查日期，通常在午夜檢查一次即可
-        setInterval(checkDate, 24 * 60 * 60 * 1000); // 每 24 小時檢查一次
-        */
+        const scheduleData = getCurrentSchedule(); // 取得當前應使用的排程
 
         // 顯示完整時刻表的函數
         function displaySchedule(schedule) {
@@ -1616,6 +1600,7 @@
 
         // 重置時刻表，顯示完整的時刻表
         function resetSchedule() {
+            const schedule = getCurrentSchedule(); // 取得當前應使用的排程
             const tripType = document.querySelector('input[name="tripType"]:checked').value;
             const dayType = document.getElementById('dayType').value;
             displaySchedule(scheduleData[dayType][tripType]); // 顯示完整的時刻表
@@ -1623,6 +1608,7 @@
 
         // 篩選最近班次的函數
         function filterSchedule() {
+            const schedule = getCurrentSchedule(); // 取得當前應使用的排程
             const tripType = document.querySelector('input[name="tripType"]:checked').value;
             const dayType = document.getElementById('dayType').value;
             const now = new Date(); // 取得當前完整日期和時間
