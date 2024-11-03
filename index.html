@@ -1103,7 +1103,7 @@
     </section>
 
     <footer>
-        <div>Ver. 113.09.18 / Build：2024.09.18(Beta)</div>
+        <div>Ver. 113.09.18 / Build：2024.11.03(Beta)</div>
         <div>Copyright &copy; 2024 Steven Chang. All rights reserved.</div>
     </footer>
 
@@ -1559,7 +1559,7 @@
                 ["20:30", "社巴", "停駛"],
                 ["21:10", "社巴", "停駛"],
                 ["21:50", "社巴", "停駛"],
-                ["22:20", "社巴", "停駛"]
+                ["22:30", "社巴", "停駛"]
                 ],
                 from: [
                 ["06:50", "社巴", "停駛"],
@@ -1767,28 +1767,27 @@
             resetAutoPlay('iosSlider');  // 啟動 iOS 自動播放
             resetAutoPlay('androidSlider');  // 啟動 Android 自動播放
         });
-    </script>
-    <script>
-    // 此函數將逐行應用翻轉動畫
-    function applyFlipAnimation() {
-        const rows = document.querySelectorAll("tbody tr");
-        rows.forEach((row, index) => {
-            // 清除任何現有的動畫
-            row.style.animation = 'none';
-            row.style.opacity = 0;  // 確保一開始是透明的
-            row.offsetHeight; // 觸發重繪，讓動畫可以重新應用
-            
-            // 計算延遲時間，讓每行依次翻轉
-            const delay = index * 0.1; // 每行延遲0.2秒
-            row.style.animation = `flipAnimation 0.5s ease forwards`;
-            row.style.animationDelay = `${delay}s`;
-        });
-    }
 
-    // 當頁面載入時初始化
-    document.addEventListener("DOMContentLoaded", () => {
-        applyFlipAnimation();
-    });
+        // 此函數將逐行應用翻轉動畫
+        function applyFlipAnimation() {
+            const rows = document.querySelectorAll("tbody tr");
+            rows.forEach((row, index) => {
+                // 清除任何現有的動畫
+                row.style.animation = 'none';
+                row.style.opacity = 0;  // 確保一開始是透明的
+                row.offsetHeight; // 觸發重繪，讓動畫可以重新應用
+                
+                // 計算延遲時間，讓每行依次翻轉
+                const delay = index * 0.1; // 每行延遲0.2秒
+                row.style.animation = `flipAnimation 0.5s ease forwards`;
+                row.style.animationDelay = `${delay}s`;
+            });
+        }
+
+        // 當頁面載入時初始化
+        document.addEventListener("DOMContentLoaded", () => {
+            applyFlipAnimation();
+        });
     </script>
 </body>
 </html>
