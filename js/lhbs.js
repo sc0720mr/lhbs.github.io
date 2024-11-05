@@ -1,6 +1,6 @@
 function isTyphoonDay() {
     const today = new Date().toLocaleDateString('zh-TW', { timeZone: 'Asia/Taipei' });
-    const typhoonDays = ["2024/10/31"]; // 設定颱風日的日期
+    const typhoonDays = ["2024/11/4"]; // 設定颱風日的日期
     //console.log("Today's date:", today); // 顯示 today 的值
     return typhoonDays.includes(today);
 }
@@ -511,21 +511,75 @@ const scheduleData = getCurrentSchedule(); // 取得當前應使用的排程
 
 // 顯示完整時刻表的函數
 function displaySchedule(schedule) {
-    const tableBody = document.querySelector('#schedule tbody');
-    tableBody.innerHTML = ''; // 清空表格
+    const scheduleContainer = document.getElementById("scheduleContainer");
+    scheduleContainer.innerHTML = ''; // 清空內容
 
-    schedule.forEach(([time, cartype, destination]) => {
-        const newRow = tableBody.insertRow();
-        newRow.insertCell().textContent = time;
-        newRow.insertCell().textContent = cartype;
-        newRow.insertCell().textContent = destination;
+    // 表頭
+    const headerRow = document.createElement("div");
+    headerRow.classList.add("row", "header");
 
-        if (cartype === "591") {
-            newRow.style.color = "red";
-        } else if (cartype === "F913" || cartype === "F913延") {
-            newRow.style.color = "#036eb8";
+    const headers = ["時間", "車輛", "出發地➡︎目的地"];
+    headers.forEach(headerText => {
+        const cell = document.createElement("div");
+        cell.classList.add("cell");
+
+        // 如果是出發地和目的地的欄位，插入 Font Awesome 的箭頭
+        if (headerText.includes("➡︎")) {
+            const [from, to] = headerText.split("➡︎");
+            cell.innerHTML = `${from} <i class="fa-solid fa-angle-right"></i> ${to}`;
+        } else {
+            cell.textContent = headerText; // 對於其他欄位，直接插入文字
         }
-        applyFlipAnimation();
+
+        headerRow.appendChild(cell);
+    });
+
+    scheduleContainer.appendChild(headerRow);
+
+    // 班次資料顯示並應用動畫
+    schedule.forEach(([time, cartype, destination], index) => {
+        const row = document.createElement("div");
+        row.classList.add("row");
+
+        const timeCell = document.createElement("div");
+        timeCell.classList.add("cell");
+        timeCell.textContent = time;
+        row.appendChild(timeCell);
+
+        const vehicleCell = document.createElement("div");
+        vehicleCell.classList.add("cell");
+        vehicleCell.textContent = cartype;
+        row.appendChild(vehicleCell);
+
+        const routeCell = document.createElement("div");
+        routeCell.classList.add("cell");
+        routeCell.textContent = destination;
+        row.appendChild(routeCell);
+
+        // 拆分目的地文字
+        if (destination.includes("➡︎")) {
+            const [from, to] = destination.split("➡︎");
+            routeCell.innerHTML = `${from} <i class="fa-solid fa-angle-right"></i> ${to}`;
+        } else {
+            routeCell.textContent = destination; // 對於其他欄位，直接插入文字
+        }
+
+        // 使用地標和旗幟圖示來顯示起點和終點
+        //routeCell.innerHTML = `${from} <i class="fa-solid fa-angle-right"></i> ${to}`;
+
+        // 依照車輛類型更改文字顏色
+        if (cartype === "591") {
+            row.style.color = "red";
+        } else if (cartype === "F913" || cartype === "F913延") {
+            row.style.color = "#036eb8";
+        }
+
+        scheduleContainer.appendChild(row);
+
+        // 逐行設定延遲，讓動畫依次播放
+        setTimeout(() => {
+            row.classList.add("sfshow");  // 使用 .show 類來啟動翻轉效果
+        }, index * 100);  // 每行延遲400ms
     });
 }
 
@@ -656,25 +710,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // 啟動自動播放
     resetAutoPlay('iosSlider');  // 啟動 iOS 自動播放
     resetAutoPlay('androidSlider');  // 啟動 Android 自動播放
-});
-
-// 此函數將逐行應用翻轉動畫
-function applyFlipAnimation() {
-    const rows = document.querySelectorAll("tbody tr");
-    rows.forEach((row, index) => {
-        // 清除任何現有的動畫
-        row.style.animation = 'none';
-        row.style.opacity = 0;  // 確保一開始是透明的
-        row.offsetHeight; // 觸發重繪，讓動畫可以重新應用
-        
-        // 計算延遲時間，讓每行依次翻轉
-        const delay = index * 0.1; // 每行延遲0.2秒
-        row.style.animation = `flipAnimation 0.5s ease forwards`;
-        row.style.animationDelay = `${delay}s`;
-    });
-}
-
-// 當頁面載入時初始化
-document.addEventListener("DOMContentLoaded", () => {
-    applyFlipAnimation();
 });

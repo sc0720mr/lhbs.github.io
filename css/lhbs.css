@@ -8,35 +8,47 @@
 }
 @keyframes flipAnimation {
     0% {
-        transform: rotateX(90deg);
+        transform: perspective(700px) rotateX(90deg) scale(0.3) translateY(-20px);
         opacity: 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    50% {
+        transform: perspective(700px) rotateX(-10deg) scale(1.1) translateY(10px);
+        opacity: 0.7;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+    80% {
+        transform: perspective(700px) rotateX(10deg) scale(1.05) translateY(-5px);
+        opacity: 1;
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
     }
     100% {
-        transform: rotateX(0deg);
+        transform: perspective(700px) rotateX(0deg) scale(1) translateY(0);
         opacity: 1;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 }
 
-tbody tr {
-    transform-origin: bottom;
-    opacity: 0; /* 開始時設置為透明 */
-    animation: flipAnimation 0.5s ease forwards; /* 設置翻轉動畫 */
-}
-
-body{margin: 0; padding: 0; background: #f7f7f7; font-family: 'Noto Sans Tc', Arial, Helvetica, sans-serif; color: #696969;}
+body{margin: 0; padding: 0; background: #f7f7f7; font-family: 'Noto Sans Tc', Arial, Helvetica, sans-serif; color: #333;}
 h1, p{margin: 0; padding: 0;}
 .hr-solid{border: 0; border-top: 1px solid #ddd; width: 100%;}
 
 /*Header*/
-header{margin: 0 0 3px; padding: 8px 20px; background: #09bc9d; color: #ffffff; display: flex; flex-direction: row; align-items: flex-start; justify-content:left; flex-wrap:nowrap; text-align: left;}
-header a, header a:link, header a:hover, header a:active, header a:visited{margin: auto 0 auto auto; display: block; opacity: 0.5; color:#ffffff;}
+header{margin: 0 0 3px; padding: 8px 14px; background: #09bc9d; color: #ffffff; display: flex; flex-direction: row;}
+header a.home{display: inline-flex; flex-direction: row; justify-content:left; width:256px;}
+header a.reset{display: inline-flex; width:30px;}
+header a > div{display: flex; flex-direction: column; align-items: flex-start; justify-content:left; flex-wrap:nowrap; text-align: left;}
+header svg{margin: 0 8px 0 0; width: 37px;}
+header h1{margin: 0; padding: 0;}
+header p{margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif;}
+
+header a, header a:hover, header a:active,header a:visited{color: #ffffff; text-decoration: none;}
+header a.reset, header a.reset:link, header a.reset:hover, header a.reset:active, header a.reset:visited{margin: auto 0 auto auto; display: block; opacity: 0.5; color:#ffffff;}
 footer{padding: 8px 20px; color: #696969; text-align: center;}
 
 /*Warning*/
-#warning{margin:-3px 0 5px; padding: 3px 20px; line-height:19px; color:#da5701; background-color: khaki;}
-.warningInfo {
-    animation: marquee 12s linear infinite;
-}
+#warning{margin:-3px 0 5px; padding: 3px 20px; line-height:19px; color:#333; background-color: #e9d502; overflow: hidden;}
+.warningInfo {animation: marquee 12s linear infinite; white-space:nowrap;}
 
 @keyframes marquee {
     from {
@@ -50,7 +62,7 @@ footer{padding: 8px 20px; color: #696969; text-align: center;}
 /*CSS TAB*/
 section{display: none; border-top: 1px solid #dddddd;}
 input.tabTrigger{display: none;}
-label.visualTab{display: inline-block; margin: 0 0 -1px; padding: 5px 16px; text-align: center; color: #bbbbbb; border: 1px solid #f7f7f7; border-bottom-color: transparent;}
+label.visualTab{display: inline-block; margin: 0 0 -1px; padding: 5px 16px; text-align: center; color: #bbbbbb; border-radius: .5rem .5rem 0 0; border: 1px solid #f7f7f7; border-bottom-color: transparent;}
 label[for="tab1"]{margin-left: 14px !important;}
 label.visualTab:hover{color: #888888; cursor: pointer;}
 input.tabTrigger:checked + label{color: #555; border: 1px solid #dddddd; border-bottom: 1px solid #f7f7f7;}
@@ -59,16 +71,29 @@ input.tabTrigger[id]:checked + label i{ transform-style: preserve-3d; animation:
 
 /*篩選功能*/
 .filterFunction{padding: 12px 14px 6px;}
-.fliterbtn, .container{padding: 8px 14px;}
+.container{padding: 8px 14px;}
+.filterbtn{padding: 4px 14px;}
 .filterFunction{text-align: center;}
+.filterFunction .custom-select { display: inline-flex; appearance: none; -webkit-appearance: none; -moz-appearance: none; padding: 4px 1.5rem 4px 8px; color: #333; border: 1px solid #ddd; border-radius: 0.5rem; background-color: #fff; background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23696969' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right .4rem center; background-size: 1em; box-sizing: border-box; }
+.filterFunction .custom-select:focus { outline: none; border-color: #007bff; }
 .filterFunction label + label{margin: 0 0 0 3px;}
-.fliterbtn button{ width: 100%; height: 36px; align-items: center; background-color: #fa6400; border-radius: .25rem; border: 1px solid #da5701; /*box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;*/ color: #fff; cursor: pointer; display: inline-flex; font-weight: 600; justify-content: center; transition: all 250ms; }
-.fliterbtn button i{margin-right: 3px;}
+.filterbtn button{ width: 100%; height: 36px; align-items: center; border-radius: .5rem; color: #fff; cursor: pointer; display: inline-flex; font-weight: 600; justify-content: center; background: rgb(238,238,238); /* Old browsers */ background: -moz-linear-gradient(top, rgba(238,238,238,1) 0%, rgba(170,170,170,1) 100%); /* FF3.6-15 */ background: -webkit-linear-gradient(top, rgba(238,238,238,1) 0%,rgba(170,170,170,1) 100%); /* Chrome10-25,Safari5.1-6 */ background: linear-gradient(to bottom, rgba(238,238,238,1) 0%,rgba(170,170,170,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#aaaaaa',GradientType=0 ); /* IE6-9 */ padding: 20px 40px; border: none; border-bottom: 1px solid #777; outline: none; user-select: none;}
+.filterbtn button.orange{background: rgb(255,152,0); /* Old browsers */ background: -moz-linear-gradient(top, rgba(255,152,0,1) 0%, rgba(245,124,0,1) 100%); /* FF3.6-15 */ background: -webkit-linear-gradient(top, rgba(255,152,0,1) 0%,rgba(245,124,0,1) 100%); /* Chrome10-25,Safari5.1-6 */ background: linear-gradient(to bottom, rgba(255,152,0,1) 0%,rgba(245,124,0,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff9800', endColorstr='#f57c00',GradientType=0 ); /* IE6-9 */ border-color: #E65100;}
+.filterbtn button:active{border-bottom: none; position: relative; top: 1px;}
+.filterbtn button i{margin-right: 3px;}
 
-/*時刻表*/
+/*NEW時刻表*/
 .container{display: flex; flex-direction: column; align-items: center; justify-content: center;}
-#schedule{border-collapse: collapse; width: 100%;}
-#schedule thead th, #schedule tbody td{padding: 8px; border: 1px solid #ddd; text-align: center;}
+.schedule-container {display: flex; flex-direction: column; align-items: center; width: 100%; margin: 0 auto;}
+.row {display: flex; width: 100%; justify-content: space-between; align-items: center; padding: 0; margin: 3px 0 0; border-radius: 0.5rem; border: 1px solid #eee; background-color: #fff; transform: rotateX(90deg); opacity: 0; transition: transform 0.6s, opacity 0.6s; box-sizing: border-box;}
+.row.header, .row.sfshow {transform: rotateX(0deg); opacity: 1; height: 41px; overflow: hidden;}
+.row.header{color:#898989;}
+.cell {text-align: center; padding: 8px; white-space: nowrap; height: 41px; line-height: 41px; overflow: hidden;}
+.cell:nth-child(1){width: 19%; border-right: 1px solid #eee;}
+.cell:nth-child(2){width: 23%;}
+.cell:nth-child(3){width: 68%; border-left: 1px solid #eee;}
+/*57+68+168=293*/
+/*19%, 23%*/
 
 /*社巴及公車站點*/
 .bus_stops_container{padding: 8px 14px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center;}
@@ -76,7 +101,7 @@ input.tabTrigger[id]:checked + label i{ transform-style: preserve-3d; animation:
 .anchor_busstops a{display: inline-block; margin: 8px 10px 0; padding: 3px 10px; outline:none;}
 .anchor_busstops a:link, .anchor_busstops a:visited, .anchor_busstops a:hover{color:#4285f4;}
 .anchor_busstops a:active{text-decoration: none;}
-.bus_stops{margin: 0 auto 20px; display: flex; flex-direction: column; color: #696969; width: calc(320px - 28px);}
+.bus_stops{margin: 0 auto 20px; display: flex; flex-direction: column; color: #333; width: calc(320px - 28px);}
 .bus_stops h3{margin: 5px 0 0; padding: 0;}
 .bus_stops span{font-size:13px; color: red;}
 .bus_stops .stop_item{display: flex; flex-direction: row; align-items: center; height: 40px;}
@@ -114,17 +139,18 @@ input.tabTrigger[id]:checked + label i{ transform-style: preserve-3d; animation:
 /*Font Size*/
 body{font-size: 16px;}
 header a i{font-size: 1.875rem;} /*30px*/
-header h1{font-size: clamp(17px, 5.3125vw, 21px);}
-header p{font-size: 0.9375rem;} /*15px*/
+header h1{font-size: clamp(1.188rem, 5.3125vw, 1.313rem);} /*19px, 21px*/
+header p{font-size: clamp(0.625rem, 5.3125vw, 0.6875rem);} /*10px, 11px*/
 footer{font-size: 0.6875rem;} /*11px*/
 
 #warning{font-size: 0.8125rem;} /*13px*/
 
-.filterFunction, .filterFunction #dayType{font-size: clamp(13px, 4.0625vw, 16px);}
-.fliterbtn{font-size: 0.8125rem;} /*13px*/
-.fliterbtn button{font-size: clamp(15px, 4.6875vw, 16px);}
+.filterFunction *, .filterFunction .custom-select{font-size: clamp(0.8125rem, 4.0625vw, 0.9375rem);} /*13px, 15px*/
+.filterbtn{font-size: 0.8125rem;} /*13px*/
+.filterbtn button{font-size: clamp(15px, 4.6875vw, 16px);}
 
-#schedule thead th, #schedule tbody td{font-size: clamp(13px, 4.0625vw, 15px);}
+.schedule-container .row.header{font-weight: bold;}
+.schedule-container .row .cell{font-size: clamp(15px, 4.0625vw, 17px);}
 
 .anchor_busstops{font-size: 0.9375rem;}
 .bus_stops h3{font-size: 1.125rem;} /*18px*/
