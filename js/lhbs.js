@@ -2,31 +2,37 @@ const alerts = [
     {
         message: "因明峰街施工路況不佳，可能影響班次到達時間，請住戶留意並耐心等候，謝謝。",
         startTime: "2024-11-07T19:00:00", // 快訊開始顯示的時間
-        endTime: "2024-11-07T21:30:00"    // 快訊結束顯示的時間
+        endTime: "2024-11-07T21:00:00"    // 快訊結束顯示的時間
     }
 ];
 
 function checkAlerts() {
-    const now = new Date();
+    const now = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Taipei" })); // 設定台灣時區
     let activeAlert = null;
 
-    for (const alert of alerts) {
-        const start = new Date(alert.startTime);
-        const end = new Date(alert.endTime);
+    // 檢查是否為颱風日
+    if (isTyphoonDay()) {
+        activeAlert = "注意：今天為颱風日，班次可能異動，請留意！";
+    } else {
+        // 如果不是颱風日，檢查一般快訊
+        for (const alert of alerts) {
+            const start = new Date(alert.startTime);
+            const end = new Date(alert.endTime);
 
-        if (now >= start && now <= end) {
-            activeAlert = alert.message;
-            break;
+            if (now >= start && now <= end) {
+                activeAlert = alert.message;
+                break;
+            }
         }
     }
 
-    console.log("Current alert message:", activeAlert); // 檢查 activeAlert 的值
+    console.log("Current alert message:", activeAlert); // 確認 activeAlert 的值
     showTyphoonWarning(activeAlert);
 }
 
 function isTyphoonDay() {
     const today = new Date().toLocaleDateString('zh-TW', { timeZone: 'Asia/Taipei' });
-    const typhoonDays = ["2024/11/4"]; // 設定颱風日的日期
+    const typhoonDays = ["2024/10/30"]; // 設定颱風日的日期
     //console.log("Today's date:", today); // 顯示 today 的值
     return typhoonDays.includes(today);
 }
