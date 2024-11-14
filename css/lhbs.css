@@ -47,8 +47,58 @@ header a.reset, header a.reset:link, header a.reset:hover, header a.reset:active
 footer{padding: 8px 20px; color: #696969; text-align: center;}
 
 /*Warning*/
-#warning{margin:-3px 0 5px; padding: 3px 20px; line-height:19px; color:#333; background-color: #e9d502; overflow: hidden;}
-.warningInfo {animation: marquee 12s linear infinite; white-space:nowrap;}
+/*#warning{margin:-3px 0 5px; padding: 3px 20px; line-height:19px; color:#333; background-color: #e9d502; overflow: hidden;}
+.warningInfo {animation: marquee 12s linear infinite; white-space:nowrap;}*/
+
+#warning{margin:-3px 0 5px; line-height:19px; color:#333; background-color: #e9d502; overflow: hidden;}
+.warning-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.alert-icon {
+    background-color: #ff4c4c;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    margin-right: 10px;
+    white-space: nowrap;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+}
+
+.alert-icon::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -10px;
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 10px solid #ff4c4c; /* ������色與背景一致 */
+}
+
+.warningInfo {
+    animation: marquee 12s linear infinite; 
+    white-space:nowrap;
+    box-sizing: border-box;
+    line-height: 19px;
+}
+
+.alert-arrow {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid #ff4c4c; /* 箭頭顏色與背景一致 */
+    position: absolute;
+    right: 0;
+}
+
 
 @keyframes marquee {
     from {
