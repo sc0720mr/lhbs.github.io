@@ -112,8 +112,8 @@ footer{padding: 8px 20px; color: #696969; text-align: center;}
 /*CSS TAB*/
 section{display: none; border-top: 1px solid #dddddd;}
 input.tabTrigger{display: none;}
-label.visualTab{display: inline-block; margin: 0 0 -1px; padding: 5px 16px; text-align: center; color: #bbbbbb; border-radius: .5rem .5rem 0 0; border: 1px solid #f7f7f7; border-bottom-color: transparent;}
-label[for="tab1"]{margin-left: 14px !important;}
+label.visualTab{display: inline-block; margin: 0 0 -1px; padding: 5px 10px; text-align: center; color: #bbbbbb; border-radius: .5rem .5rem 0 0; border: 1px solid #f7f7f7; border-bottom-color: transparent;}
+label[for="tab1"]{margin-left: 6% !important;}
 label.visualTab:hover{color: #888888; cursor: pointer;}
 input.tabTrigger:checked + label{color: #555; border: 1px solid #dddddd; border-bottom: 1px solid #f7f7f7;}
 #tab1:checked ~ #content1, #tab2:checked ~ #content2, #tab3:checked ~ #content3, #tab4:checked ~ #content4 {display: block;}
@@ -163,6 +163,14 @@ input.tabTrigger[id]:checked + label i{ transform-style: preserve-3d; animation:
 .bus_stops.busF913 .stop_item div:first-child::before{background-color: #036eb8;}
 .bus_stops.busF913 .stop_item div:first-child::after{border-color: #036eb8;}
 
+/*社區服務電話*/
+.serviceHotline{width: 100%; border-collapse: collapse; border: 1px solid #eee;}
+.serviceHotline tr:nth-child(even){background:#eee;}
+.serviceHotline th{background-color: #eee; min-width: 3em;}
+.serviceHotline th, .serviceHotline td{padding: 10px 8px;}
+.serviceHotline th:nth-child(2), .serviceHotline th:nth-child(3),
+.serviceHotline td:nth-child(2), .serviceHotline td:nth-child(3){text-align: center; white-space: nowrap;}
+
 /*關於*/
 .about_container{padding: 8px 24px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; line-height: 175%;}
 .about_container h3 span{margin: 0 0 8px; display: inline-block; font-weight:normal; color:red; line-height:1.125rem;}
@@ -195,6 +203,8 @@ footer{font-size: 0.6875rem;} /*11px*/
 
 #warning{font-size: 0.8125rem;} /*13px*/
 
+.visualTab{font-size: 0.9375rem;} /*15px*/
+
 .filterFunction *, .filterFunction .custom-select{font-size: clamp(0.8125rem, 4.0625vw, 0.9375rem);} /*13px, 15px*/
 .filterbtn{font-size: 0.8125rem;} /*13px*/
 .filterbtn button{font-size: clamp(15px, 4.6875vw, 16px);}
@@ -206,6 +216,14 @@ footer{font-size: 0.6875rem;} /*11px*/
 .bus_stops h3{font-size: 1.125rem;} /*18px*/
 .bus_stops .stop_item{font-size: 0.9375rem;} /*15px*/
 
+.serviceHotline{font-size: 0.875rem; line-height: 0.875rem;}
+
 .about_container{font-size: 0.9375rem;} /*15px*/
 .about_container h3{font-size: 1.125rem;} /*15px*/
 .about_container h4{font-size: 0.9375rem;} /*15px*/
+
+/* 專門針對小型手機的樣式 */
+@media (max-width: 320px) {
+    label[for="tab1"]{margin-left: 4% !important;}
+    .visualTab{font-size: 0.8125rem;}
+}
