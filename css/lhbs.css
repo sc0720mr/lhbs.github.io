@@ -216,7 +216,7 @@ footer{font-size: 0.6875rem;} /*11px*/
 .bus_stops h3{font-size: 1.125rem;} /*18px*/
 .bus_stops .stop_item{font-size: 0.9375rem;} /*15px*/
 
-.serviceHotline{font-size: clamp(15px, 4.0625vw, 17px); line-height: clamp(15px, 4.0625vw, 17px);}
+.serviceHotline{font-size: clamp(14px, 4.0625vw, 17px); line-height: clamp(15px, 4.0625vw, 17px);}
 
 .about_container{font-size: 0.9375rem;} /*15px*/
 .about_container h3{font-size: 1.125rem;} /*15px*/
