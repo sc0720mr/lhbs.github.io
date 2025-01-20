@@ -1,8 +1,8 @@
 const alerts = [
     {
-        message: "1/1(三)社巴為假日班次，1/2(四)社巴為平日班次，請住戶們多加留意。",
-        startTime: "2024-12-30T16:00:00", // 快訊開始顯示的時間
-        endTime: "2025-01-02T23:00:00"    // 快訊結束顯示的時間
+        message: "春節1/27~2/2，班次均有異動，請住戶們多加留意。",
+        startTime: "2024-01-19T16:00:00", // 快訊開始顯示的時間
+        endTime: "2025-02-02T23:00:00"    // 快訊結束顯示的時間
     }
 ];
 
@@ -32,12 +32,20 @@ function checkAlerts() {
 
 function isTyphoonDay() {
     const today = new Date().toLocaleDateString('zh-TW', { timeZone: 'Asia/Taipei' });
-    const typhoonDays = ["2024/10/30"]; // 設定颱風日的日期
+    const typhoonDays = ["2024/12/31"]; // 設定颱風日的日期
     //console.log("Today's date:", today); // 顯示 today 的值
     return typhoonDays.includes(today);
 }
 
+function isChineseNYDay() {
+    const today = new Date().toLocaleDateString('zh-TW', { timeZone: 'Asia/Taipei' });
+    const chineseNYDays = ["2025/1/27", "2025/1/28", "2025/1/29", "2025/1/30", "2025/1/31", "2025/2/1", "2025/2/2"]; // 設定颱風日的日期
+    //console.log("Today's date:", today); // 顯示 today 的值
+    return chineseNYDays.includes(today);
+}
+
 function getCurrentSchedule() {
+    //return isChineseNYDay() ? chineseNYSchedule : normalSchedule;
     return isTyphoonDay() ? typhoonSchedule : normalSchedule;
 }
 
