@@ -1150,12 +1150,12 @@
     <script src="js/lhbs_114.js?v=1.0.31 defer"></script>
     <script>
          const busStops = [
-            { name: "水蓮山莊", lat: 25.0756958, lng: 121.6329477 },
-            { name: "金龍里", lat: 25.0858013, lng: 121.5962172 },
-            { name: "民族六街市場口", lat: 25.07065685499145, lng: 121.62934897496015 },
-            { name: "金龍國小", lat: 25.0685754, lng: 121.6277344 },
-            { name: "經貿園區", lat: 25.066582, lng: 121.621190 },
-            { name: "東湖捷運站", lat: 25.066848, lng: 121.611427 },
+            { name: "水蓮山莊", lat: 25.0756958, lng: 121.6329477, direction: "to"  },
+            { name: "金龍里", lat: 25.0858013, lng: 121.5962172, direction: "to"  },
+            { name: "民族六街市場口", lat: 25.07065685499145, lng: 121.62934897496015, direction: "to"  },
+            { name: "金龍國小", lat: 25.0685754, lng: 121.6277344, direction: "to"  },
+            { name: "經貿園區", lat: 25.066582, lng: 121.621190, direction: "to"  },
+            { name: "東湖捷運站", lat: 25.066848, lng: 121.611427, direction: "to"  },
             // 可以在這裡添加其他的巴士停靠點
         ];
 
@@ -1187,15 +1187,18 @@
         }
 
         function findNearestBusStop(userLat, userLng) {
+            const direction = document.querySelector('input[name="tripType"]:checked').value; // 獲取選中的方向
             let nearestStop = null;
             let minDistance = Infinity;
 
             busStops.forEach(stop => {
-                const distance = haversineDistance(userLat, userLng, stop.lat, stop.lng);
-                console.log(`停靠站 ${stop.name} 距離為 ${distance.toFixed(2)} 公里`);
-                if (distance < minDistance) {
-                    minDistance = distance;
-                    nearestStop = stop;
+                if (stop.direction === direction) { // 檢查停靠點是否匹配選擇的方向
+                    const distance = haversineDistance(userLat, userLng, stop.lat, stop.lng);
+                    console.log(`停靠站 ${stop.name} 距離為 ${distance.toFixed(2)} 公里`);
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        nearestStop = stop;
+                    }
                 }
             });
 
