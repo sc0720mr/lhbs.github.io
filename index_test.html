@@ -1234,7 +1234,8 @@
         function displayNearestStop(nearestStop, distance) {
             const nearestStopContainer = document.getElementById('nearestStop');
             nearestStopContainer.innerHTML = `
-                <p>目前距離您最近的停站點是：<a href="https://www.google.com/maps/dir/?api=1&destination=${nearestStop.lat},${nearestStop.lng}" target="_blank">${nearestStop.name}</a> (${nearestStop.busType})
+                <p>目前距離您最近的停站點是：</p>
+                <p><a href="https://www.google.com/maps/dir/?api=1&destination=${nearestStop.lat},${nearestStop.lng}" target="_blank">${nearestStop.name}</a> (${nearestStop.busType})
                 距離約 ${distance.toFixed(2)} 公里</p>`;
         }
 

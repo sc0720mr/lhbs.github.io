@@ -132,6 +132,9 @@ input.tabTrigger[id]:checked + label i{ transform-style: preserve-3d; animation:
 .filterbtn button:active{border-bottom: none; position: relative; top: 1px;}
 .filterbtn button i{margin-right: 3px;}
 
+/*最近停站點資訊*/
+#nearestStop{text-align: center;}
+
 /*NEW時刻表*/
 .container{display: flex; flex-direction: column; align-items: center; justify-content: center;}
 .schedule-container {display: flex; flex-direction: column; align-items: center; width: 100%; margin: 0 auto;}
