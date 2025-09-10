@@ -1195,7 +1195,7 @@
             busStops.forEach(stop => {
                 if (stop.direction === direction) { // 檢查停靠點是否匹配選擇的方向
                     const distance = haversineDistance(userLat, userLng, stop.lat, stop.lng);
-                    console.log(`停靠站 ${stop.name} 距離為 ${distance.toFixed(2)} 公里`);
+                    console.log(`停站點 ${stop.name} 距離為 ${distance.toFixed(2)} 公里`);
                     if (distance < minDistance) {
                         minDistance = distance;
                         nearestStop = stop;
@@ -1223,7 +1223,7 @@
 
         function displayNearestStop(stop, distance) {
             const nearestStopInfo = `
-                您目前距離最近的停站點是:
+                目前距離您最近的停站點是：
                 <a href="https://www.google.com/maps/dir/?api=1&destination=${stop.lat},${stop.lng}" target="_blank">${stop.name}</a>`;
                 //(距離約 ${distance.toFixed(2)} 公里)
             
