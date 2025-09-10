@@ -1150,12 +1150,12 @@
     <script src="js/lhbs_114.js?v=1.0.31 defer"></script>
     <script>
          const busStops = [
-            { name: "水蓮山莊", lat: 25.0756958, lng: 121.6329477 },
-            { name: "金龍里", lat: 25.0858013, lng: 121.5962172 },
-            { name: "民族六街市場口", lat: 25.07065685499145, lng: 121.62934897496015 },
-            { name: "金龍國小", lat: 25.0685754, lng: 121.6277344 },
-            { name: "經貿園區", lat: 25.066582, lng: 121.621190 },
-            { name: "東湖捷運站", lat: 25.066848, lng: 121.611427 },
+            { name: "水蓮山莊", lat: 25.0756958, lng: 121.6329477, direction: "to" },
+            { name: "金龍里", lat: 25.0858013, lng: 121.5962172, direction: "to" },
+            { name: "民族六街市場口", lat: 25.07065685499145, lng: 121.62934897496015, direction: "to" },
+            { name: "金龍國小", lat: 25.0685754, lng: 121.6277344, direction: "to" },
+            { name: "經貿園區", lat: 25.066582, lng: 121.621190, direction: "to" },
+            { name: "東湖捷運站", lat: 25.066848, lng: 121.611427, direction: "to" },
             // 可以在這裡添加其他的巴士停靠點
         ];
 
@@ -1177,7 +1177,6 @@
         function showPosition(position) {
             const userLat = position.coords.latitude;
             const userLng = position.coords.longitude;
-            console.log("實際位置：", userLat, userLng);
             findNearestBusStop(userLat, userLng);
         }
 
