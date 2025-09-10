@@ -93,7 +93,7 @@
 
     <section id="content1">
         <div class="filterFunction">
-            <select id="dayType" class="custom-select">
+            <select id="dayType" class="custom-select" onchange="updateNearestStop()">
                 <!--<option value="workday">春節</option>-->
                 <option value="workday">平日</option>
                 <option value="holiday">假日</option>
@@ -1150,13 +1150,13 @@
     <script src="js/lhbs_114.js?v=1.0.31 defer"></script>
     <script>
          const busStops = [
-            { name: "水蓮山莊", lat: 25.0756958, lng: 121.6329477, direction: "to" },
-            { name: "金龍里", lat: 25.0858013, lng: 121.5962172, direction: "to" },
-            { name: "民族六街市場口", lat: 25.07065685499145, lng: 121.62934897496015, direction: "to" },
-            { name: "金龍國小", lat: 25.0685754, lng: 121.6277344, direction: "to" },
-            { name: "經貿園區", lat: 25.066582, lng: 121.621190, direction: "to" },
-            { name: "東湖捷運站", lat: 25.066848, lng: 121.611427, direction: "to"  },
-            { name: "測試回程站", lat: 25.066848, lng: 121.611427, direction: "from" },
+            { name: "水蓮山莊", lat: 25.0756958, lng: 121.6329477, direction: "to", dayType: "workday" },
+            { name: "金龍里", lat: 25.0858013, lng: 121.5962172, direction: "to", dayType: "workday" },
+            { name: "民族六街市場口", lat: 25.07065685499145, lng: 121.62934897496015, direction: "to", dayType: "workday" },
+            { name: "金龍國小", lat: 25.0685754, lng: 121.6277344, direction: "to", dayType: "workday" },
+            { name: "經貿園區", lat: 25.066582, lng: 121.621190, direction: "to", dayType: "workday" },
+            { name: "東湖捷運站", lat: 25.066848, lng: 121.611427, direction: "to", dayType: "workday" },
+            { name: "測試回程站", lat: 25.066848, lng: 121.611427, direction: "from", dayType: "holiday" },
             // 可以在這裡添加其他的巴士停靠點
         ];
 
@@ -1238,7 +1238,7 @@
         };
 
         function updateNearestStop() {
-            console.log("用戶切換了去程或回程選項，重新獲取最近停靠站...");
+            console.log("用戶切換了去程或回程選項，並可能更改了日子類型，重新獲取最近停靠站...");
             getUserLocation(); // 重新調用獲取位置的函數
         }
     </script>
