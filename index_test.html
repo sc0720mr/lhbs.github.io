@@ -1150,13 +1150,13 @@
     <script src="js/lhbs_114.js?v=1.0.31 defer"></script>
     <script>
          const busStops = [
-            { name: "水蓮山莊", lat: 25.0756958, lng: 121.6329477, direction: "to", dayType: "workday" },
-            { name: "金龍里", lat: 25.0858013, lng: 121.5962172, direction: "to", dayType: "workday" },
-            { name: "民族六街市場口", lat: 25.07065685499145, lng: 121.62934897496015, direction: "to", dayType: "workday" },
-            { name: "金龍國小", lat: 25.0685754, lng: 121.6277344, direction: "to", dayType: "workday" },
-            { name: "經貿園區", lat: 25.066582, lng: 121.621190, direction: "to", dayType: "workday" },
-            { name: "東湖捷運站", lat: 25.066848, lng: 121.611427, direction: "to", dayType: "workday" },
-            { name: "測試回程站", lat: 25.066848, lng: 121.611427, direction: "from", dayType: "holiday" },
+            { name: "水蓮山莊", lat: 25.075695, lng: 121.632947, direction: "to", dayType: "workday", busType: "社巴" },
+            { name: "金龍里", lat: 25.085801, lng: 121.596217, direction: "to", dayType: "workday", busType: "社巴" },
+            { name: "民族六街市場口", lat: 25.070656, lng: 121.629348, direction: "to", dayType: "workday", busType: "社巴" },
+            { name: "金龍國小", lat: 25.068575, lng: 121.6277344, direction: "to", dayType: "workday", busType: "社巴" },
+            { name: "經貿園區", lat: 25.066582, lng: 121.621190, direction: "to", dayType: "workday", busType: "社巴" },
+            { name: "東湖捷運站", lat: 25.066848, lng: 121.611427, direction: "to", dayType: "workday", busType: "社巴" },
+            { name: "測試回程站", lat: 25.066848, lng: 121.611427, direction: "from", dayType: "holiday", busType: "社巴" },
             // 可以在這裡添加其他的巴士停靠點
         ];
 
@@ -1221,14 +1221,11 @@
             return R * c; // 返回距離 (公里)
         }
 
-        function displayNearestStop(stop, distance) {
-            const nearestStopInfo = `
-                目前距離您最近的停站點是：
-                <a href="https://www.google.com/maps/dir/?api=1&destination=${stop.lat},${stop.lng}" target="_blank">${stop.name}</a>`;
-                //(距離約 ${distance.toFixed(2)} 公里)
-            
-            // 將信息顯示到 HTML 中
-            document.getElementById('nearestStop').innerHTML = nearestStopInfo;
+        function displayNearestStop(nearestStop, distance) {
+            const nearestStopContainer = document.getElementById('nearestStop');
+            nearestStopContainer.innerHTML = `
+                <p>您目前距離最近的停站點是：${nearestStop.name}(${nearestStop.busType})</p>
+                <p>距離：${distance.toFixed(2)} 公里</p>`;
         }
 
         // 當頁面加載完成時，調用獲取位置的函數
