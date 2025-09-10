@@ -1236,6 +1236,11 @@
             console.log("頁面加載完成，嘗試獲取用戶位置...");
             getUserLocation();
         };
+
+        function updateNearestStop() {
+            console.log("用戶切換了去程或回程選項，重新獲取最近停靠站...");
+            getUserLocation(); // 重新調用獲取位置的函數
+        }
     </script>
 </body>
 </html>
