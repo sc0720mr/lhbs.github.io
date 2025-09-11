@@ -1651,7 +1651,7 @@
 
             const nearestStopContainer = document.getElementById('nearestStop');
             nearestStopContainer.innerHTML = `
-                <p>距離您最近的 ${selectedDayType === 'workday' ? '平日' : '假日'} ${selectedTripType} 停站點是：</p>
+                <p>距離您最近的 ${selectedDayType === 'workday' ? '平日' : '假日'}${selectedTripType} 停站點是：</p>
                 <p><a href="https://www.google.com/maps/dir/?api=1&destination=${nearestStop.lat},${nearestStop.lng}" target="_blank">${nearestStop.name}</a> (${nearestStop.busType})</p>`;
                 // 距離約 ${distance.toFixed(2)} 公里
         }
