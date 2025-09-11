@@ -83,7 +83,7 @@ footer{padding: 8px 20px; color: #696969; text-align: center;}
 }
 
 .warningInfo {
-    animation: marquee 12s linear infinite; 
+    animation: marquee 20s linear infinite; 
     white-space:nowrap;
     box-sizing: border-box;
     line-height: 19px;
