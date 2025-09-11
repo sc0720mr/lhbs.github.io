@@ -1634,15 +1634,17 @@
         }
 
         function findNearestBusStop(userLat, userLng) {
-            if (userLat && userLng) { // 確保獲取到有效位置
+            if (userLat && userLng) { 
                 const direction = document.querySelector('input[name="tripType"]:checked').value;
+                const dayType = document.getElementById('dayType').value; // 新增取得日子類型
+
                 let nearestStop = null;
                 let minDistance = Infinity;
 
                 busStops.forEach(stop => {
-                    if (stop.direction === direction) {
+                    if (stop.direction === direction && stop.dayType === dayType) { // 加上 dayType 過濾
                         const distance = haversineDistance(userLat, userLng, stop.lat, stop.lng);
-                        console.log(`停站點 ${stop.name} 距離為 ${distance.toFixed(2)} 公里`);
+                        console.log(`停站點 ${stop.name} (${stop.dayType}) 距離為 ${distance.toFixed(2)} 公里`);
                         if (distance < minDistance) {
                             minDistance = distance;
                             nearestStop = stop;
@@ -1652,6 +1654,9 @@
 
                 if (nearestStop) {
                     displayNearestStop(nearestStop, minDistance);
+                } else {
+                    console.warn("找不到符合條件的停靠站 (dayType: " + dayType + ", direction: " + direction + ")");
+                    document.getElementById('nearestStop').innerHTML = `<p>⚠️ 找不到符合「${dayType === 'workday' ? '平日' : '假日'}」${direction === 'to' ? '去程' : '回程'} 的停靠站</p>`;
                 }
             } else {
                 console.warn("無法獲取有效的位置");
