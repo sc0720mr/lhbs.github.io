@@ -1633,7 +1633,7 @@
             alert("無法獲取您的位置。");
         }
 
-        function findNearestBusStop(userLat, userLng) {
+        /*function findNearestBusStop(userLat, userLng) {
             const direction = document.querySelector('input[name="tripType"]:checked').value; // 獲取選中的方向
             let nearestStop = null;
             let minDistance = Infinity;
@@ -1652,6 +1652,31 @@
             if (nearestStop) {
                 // 傳入最近停靠站的距離
                 displayNearestStop(nearestStop, minDistance);
+            }
+        }*/
+
+        function findNearestBusStop(userLat, userLng) {
+            if (userLat && userLng) { // 確保獲取到有效位置
+                const direction = document.querySelector('input[name="tripType"]:checked').value;
+                let nearestStop = null;
+                let minDistance = Infinity;
+
+                busStops.forEach(stop => {
+                    if (stop.direction === direction) {
+                        const distance = haversineDistance(userLat, userLng, stop.lat, stop.lng);
+                        console.log(`停站點 ${stop.name} 距離為 ${distance.toFixed(2)} 公里`);
+                        if (distance < minDistance) {
+                            minDistance = distance;
+                            nearestStop = stop;
+                        }
+                    }
+                });
+
+                if (nearestStop) {
+                    displayNearestStop(nearestStop, minDistance);
+                }
+            } else {
+                console.warn("無法獲取有效的位置");
             }
         }
 
