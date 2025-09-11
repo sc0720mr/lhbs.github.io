@@ -1179,7 +1179,7 @@
         <div>Copyright &copy; 2024 Steven Chang. All rights reserved.</div>
     </footer>
 
-    <script src="js/lhbs_114.js?v=1.0.31" defer></script>
+    <script src="js/lhbs_114.js?v=1.0.32" defer></script>
     <script>
          const busStops = [
             { name: "水蓮山莊", lat: 25.077647,  lng: 121.629944, direction: "to", dayType: "workday", busType: "社巴"},
@@ -1636,15 +1636,15 @@
         function findNearestBusStop(userLat, userLng) {
             if (userLat && userLng) { 
                 const direction = document.querySelector('input[name="tripType"]:checked').value;
-                const dayType = document.getElementById('dayType').value; // 新增取得日子類型
 
                 let nearestStop = null;
                 let minDistance = Infinity;
 
+                const dayType = document.getElementById('dayType').value; // 抓取使用者選的日別
+
                 busStops.forEach(stop => {
-                    if (stop.direction === direction && stop.dayType === dayType) { // 加上 dayType 過濾
+                    if (stop.direction === direction && stop.dayType === dayType) { // 加入 dayType 判斷
                         const distance = haversineDistance(userLat, userLng, stop.lat, stop.lng);
-                        console.log(`停站點 ${stop.name} (${stop.dayType}) 距離為 ${distance.toFixed(2)} 公里`);
                         if (distance < minDistance) {
                             minDistance = distance;
                             nearestStop = stop;
@@ -1706,6 +1706,8 @@
             console.log("頁面加載完成，嘗試獲取用戶位置...");
             getUserLocation();
         };
+
+        updateNearestStop();
     </script>
 </body>
 </html>
