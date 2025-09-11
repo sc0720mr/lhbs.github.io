@@ -30,14 +30,14 @@
     <link rel="icon" type="image/png" href="icon/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="icon/favicon-16x16.png" sizes="16x16" />
     <link rel="icon" type="image/png" href="icon/favicon-128.png" sizes="128x128" />
-    <meta name="application-name" content="&nbsp;"/>
+    <meta name="application-name" content=""/>
     <meta name="msapplication-TileColor" content="#FFFFFF" />
     <meta name="msapplication-TileImage" content="icon/mstile-144x144.png" />
     <meta name="msapplication-square70x70logo" content="icon/mstile-70x70.png" />
     <meta name="msapplication-square150x150logo" content="icon/mstile-150x150.png" />
     <meta name="msapplication-wide310x150logo" content="icon/mstile-310x150.png" />
     <meta name="msapplication-square310x310logo" content="icon/mstile-310x310.png" />
-    <link rel="stylesheet" href="css/lhbs.css?v=1.0.7" />
+    <link rel="stylesheet" href="css/lhbs.css?v=1.0.8" />
     <title>水蓮山莊社區巴士及公車時刻表</title>
 </head>
 <body>
@@ -93,13 +93,13 @@
 
     <section id="content1">
         <div class="filterFunction">
-            <select id="dayType" class="custom-select">
+            <select id="dayType" class="custom-select" onchange="updateNearestStop()">
                 <!--<option value="workday">春節</option>-->
                 <option value="workday">平日</option>
                 <option value="holiday">假日</option>
             </select>
-            <label><input type="radio" name="tripType" value="to" checked> 去程(出水蓮)</label>
-            <label><input type="radio" name="tripType" value="from"> 回程(回水蓮)</label>
+            <label><input type="radio" name="tripType" value="to" checked onchange="updateNearestStop()"> 去程(出水蓮)</label>
+            <label><input type="radio" name="tripType" value="from" onchange="updateNearestStop()"> 回程(回水蓮)</label>
         </div>
 
         <div class="filterbtn">
@@ -107,6 +107,7 @@
         </div>
 
         <div class="container">
+            <div id="nearestStop"></div>
             <div id="scheduleContainer" class="schedule-container"></div>
         </div>
     </section>
@@ -124,27 +125,27 @@
                 <span>走汐湖二橋不經東湖</span>
                 <div class="stop_item">
                     <div></div>
-                    <div>水蓮山莊</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.077647,121.629944" target="_blank">水蓮山莊</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>金龍里</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.071147,121.6310686" target="_blank">金龍里</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>民族六街市場口</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.070619,121.629333" target="_blank">民族六街市場口</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>金龍國小</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.068229,121.625833" target="_blank">金龍國小</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>西陵科學園區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.066636,121.621237" target="_blank">西陵科學園區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>東湖捷運站</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06720719,121.6115736" target="_blank">東湖捷運站</a></div>
                 </div>
             </div>
 
@@ -153,35 +154,35 @@
                 <span>經東湖，康寧路轉明峰街</span>
                 <div class="stop_item">
                     <div></div>
-                    <div>東湖捷運站(3號出口)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06720719,121.6115736" target="_blank">東湖捷運站(3號出口)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>五分社區(寶島鐘錶旁)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06868684,121.6143563" target="_blank">五分社區(寶島鐘錶旁)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>東湖國小(東湖路126號前)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06803617,121.6165235" target="_blank">東湖國小(東湖路126號前)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>西陵科學園區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06660779,121.622098" target="_blank">西陵科學園區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>金龍國小(OK便利商店前 - 明峰街281號)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06844712,121.6265301" target="_blank">金龍國小(OK便利店前 明峰街281號)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>民族六街市場口</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.0705,121.62945" target="_blank">民族六街市場口</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>金龍里(家樂福)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07100603,121.6309914" target="_blank">金龍里(家樂福)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>水蓮山莊</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.077817,121.630139" target="_blank">水蓮山莊</a></div>
                 </div>
             </div>
 
@@ -189,47 +190,63 @@
                 <h3>591公車平日及社巴假日去程</h3>
                 <div class="stop_item">
                     <div></div>
-                    <div>水蓮山莊</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.077647,121.629944" target="_blank">水蓮山莊</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>金龍里</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.072847,121.630142" target="_blank">北峰寺</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>民族六街市場口</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.071147,121.6310686" target="_blank">金龍里</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>金龍國小</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.069422,121.6276293" target="_blank">北峰里(明峰街)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>西陵科學園區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.068229,121.625833" target="_blank">金龍國小(明峰街)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>東湖國小</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.067032,121.62487" target="_blank">木南煤礦</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>五分社區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06662284,121.6212423" target="_blank">經貿園區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>東湖捷運站</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.066708,121.618948" target="_blank">北山里</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>南港軟體園區北站</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.068177,121.61668" target="_blank">東湖國小</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>南港軟體園區南站</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06876328,121.6143084" target="_blank">五分社區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>南港火車站</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.067493,121.6115022" target="_blank">捷運東湖站(南湖高中)</a></div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.05968702,121.6142045" target="_blank">南港軟體園區北站</a></div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.05655055,121.6138914" target="_blank">南港軟體園區南站</a></div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.05496831,121.6097763" target="_blank">南港高工(南港路)</a></div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.05340065,121.6069591" target="_blank">南港車站</a></div>
                 </div>
             </div>
 
@@ -237,47 +254,59 @@
                 <h3>591公車平日及社巴假日回程</h3>
                 <div class="stop_item">
                     <div></div>
-                    <div>南港火車站</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.05437592,121.607082" target="_blank">南港行政中心</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>南港軟體園區南站</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.05493375,121.6106621" target="_blank">南港高工(南港路)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>南港軟體園區北站</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.05641711,121.6141291" target="_blank">南港軟體園區南站</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>東湖捷運站(3號出口)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.05870571,121.61428" target="_blank">南港軟體園區北站</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>五分社區(寶島鐘錶旁)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06720719,121.6115736" target="_blank">捷運東湖站(南湖高中)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>東湖國小(東湖路126號前)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06868684,121.6143563" target="_blank">五分社區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>西陵科學園區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.068103,121.61672" target="_blank">東湖國小</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>金龍國小(OK便利商店前 - 明峰街281號)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.066676,121.618528" target="_blank">北山里</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>民族六街市場口</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06660779,121.622098" target="_blank">經貿園區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>金龍里(家樂福)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.066839,121.624809" target="_blank">木南煤礦</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>水蓮山莊</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.068008,121.625826" target="_blank">金龍國小(明峰街)</a></div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.071008,121.631037" target="_blank">金龍里</a></div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.072844,121.63024" target="_blank">北峰寺</a></div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.077647,121.629944" target="_blank">水蓮山莊</a></div>
                 </div>
             </div>
 
@@ -286,155 +315,155 @@
                 <span>至水蓮約23分，不含塞車及停靠站時間</span>
                 <div class="stop_item">
                     <div></div>
-                    <div>國泰醫院(建成路)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07328,121.661909" target="_blank">國泰醫院(建成路)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>崇義高中(忠孝東路)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07577099,121.6668948" target="_blank">崇義高中(忠孝東路)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>橋東</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.073617,121.666124" target="_blank">橋東</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>摩登家庭社區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07186389,121.6659388" target="_blank">摩登家庭社區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>茄苳路口</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.070588,121.665671" target="_blank">茄苳路口</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>汐止火車站(忠孝東路)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.067993,121.663358" target="_blank">汐止火車站(忠孝東路)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>秀峰高中(忠孝東路)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.066476,121.661871" target="_blank">秀峰高中(忠孝東路)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>黃昏市場</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.065446,121.659604" target="_blank">黃昏市場</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>汐止國中</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.067358,121.658841" target="_blank">汐止國中</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>汐止國小</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.066335,121.654564" target="_blank">汐止國小</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>汐科站北站</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06486,121.652863" target="_blank">汐科站北站</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>遠東科技中心</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.063921,121.650598" target="_blank">遠東科技中心</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>汐科站南站</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06295544,121.6470153" target="_blank">汐科站南站</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>昊天嶺</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.062079,121.644615" target="_blank">昊天嶺</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>樟樹一路口</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06245347,121.6416879" target="_blank">樟樹一路口</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>忠孝里</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.064858,121.642188" target="_blank">忠孝里</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>樟樹國小</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.066762,121.64249" target="_blank">樟樹國小</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>開山宮</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.068329,121.642713" target="_blank">開山宮</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>山光社區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.071151,121.641858" target="_blank">山光社區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>半島花園</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07381,121.6436" target="_blank">半島花園</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>樟江大橋</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.075856,121.644525" target="_blank">樟江大橋</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>伯爵山莊</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.075359,121.641733" target="_blank">伯爵山莊</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>伯爵山莊一</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07383644,121.6390103" target="_blank">伯爵山莊一</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>日月光社區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.075622,121.63741" target="_blank">日月光社區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>日月光社區D區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.074445,121.6368653" target="_blank">日月光社區D區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>日月光社區B區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.075509,121.637417" target="_blank">日月光社區B區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>濱湖大第</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07195441,121.6371164" target="_blank">濱湖大第</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>金龍湖</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07147645,121.6352014" target="_blank">金龍湖</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>湖東街口</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07141234,121.6334489" target="_blank">湖東街口</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>北峰寺</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.072844,121.63024" target="_blank">北峰寺</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>水蓮山莊</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.077647,121.629944" target="_blank">水蓮山莊</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>北峰寺</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.072847,121.630142" target="_blank">北峰寺</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>金龍里</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.071147,121.6310686" target="_blank">金龍里</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>民族六街口</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.070619,121.629333" target="_blank">民族六街口</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>北峰里(明峰街)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.069422,121.6276293" target="_blank">北峰里(明峰街)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>金龍國小(明峰街)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.068229,121.625833" target="_blank">金龍國小(明峰街)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>經貿園區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.066636,121.621237" target="_blank">經貿園區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>汐湖橋口(循環接續點)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.067322,121.617871" target="_blank">汐湖橋口(循環接續點)</a></div>
                 </div>
             </div>
 
@@ -443,163 +472,163 @@
                 <span>循環接續站點折返</span>
                 <div class="stop_item">
                     <div></div>
-                    <div>汐湖橋口(循環接續點)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.067322,121.617871" target="_blank">汐湖橋口(循環接續點)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>經貿園區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06660779,121.622098" target="_blank">經貿園區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>木南煤礦</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.066839,121.624809" target="_blank">木南煤礦</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>金龍國小(康寧街)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.067351,121.627395" target="_blank">金龍國小(康寧街)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>北峰里(康寧街)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.067712,121.629129" target="_blank">北峰里(康寧街)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>金龍市場</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.068367,121.629422" target="_blank">金龍市場</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>北峰里(中興路)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06922056,121.6286716" target="_blank">北峰里(中興路)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>民族六街口</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.0705,121.62945" target="_blank">民族六街口</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>金龍里</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.071008,121.631037" target="_blank">金龍里</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>北峰寺</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.072844,121.63024" target="_blank">北峰寺</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>水蓮山莊</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.077647,121.629944" target="_blank">水蓮山莊</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>北峰寺</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.072847,121.630142" target="_blank">北峰寺</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>湖東街口</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07129,121.63344" target="_blank">湖東街口</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>金龍湖</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.071398,121.634638" target="_blank">金龍湖</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>濱湖大第</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07184,121.63723" target="_blank">濱湖大第</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>日月光社區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.075622,121.63741" target="_blank">日月光社區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>日月光社區D區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.074445,121.6368653" target="_blank">日月光社區D區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>日月光社區B區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.075509,121.637417" target="_blank">日月光社區B區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>伯爵山莊一</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.073736,121.63923" target="_blank">伯爵山莊一</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>伯爵山莊</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.075192,121.641688" target="_blank">伯爵山莊</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>樟江大橋</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07573198,121.6447007" target="_blank">樟江大橋</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>半島花園</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.073991,121.643781" target="_blank">半島花園</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>福安宮</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.070234,121.641383" target="_blank">福安宮</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>厚德里(樟樹國小)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.068556,121.640833" target="_blank">厚德里(樟樹國小)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>樟樹國際實中</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06528,121.63978" target="_blank">樟樹國際實中</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>忠孝里活動中心</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06315929,121.6397007" target="_blank">忠孝里活動中心</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>樟樹一路口</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.062424,121.641581" target="_blank">樟樹一路口</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>昊天嶺</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06217,121.6454" target="_blank">昊天嶺</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>汐科站南站</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.0628093,121.6472189" target="_blank">汐科站南站</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>汐科站北站</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06417,121.65221" target="_blank">汐科站北站</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>汐止國小</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.066251,121.654922" target="_blank">汐止國小</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>汐止國中</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.067099,121.658766" target="_blank">汐止國中</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>黃昏市場</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.065399,121.659469" target="_blank">黃昏市場</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>秀峰高中(忠孝東路)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.066644,121.662214" target="_blank">秀峰高中(忠孝東路)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>汐止火車站(忠孝東路)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.067896,121.663421" target="_blank">汐止火車站(忠孝東路)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>茄苳路口</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.070489,121.665747" target="_blank">茄苳路口</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>摩登家庭社區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07142401,121.6659554" target="_blank">摩登家庭社區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>橋東</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.073527,121.666245" target="_blank">橋東</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>崇義高中(忠孝東路)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07598285,121.6670868" target="_blank">崇義高中(忠孝東路)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>國泰醫院(建成路)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07328,121.661909" target="_blank">國泰醫院(建成路)</a></div>
                 </div>
             </div>
 
@@ -608,163 +637,167 @@
                 <span>國泰醫院至水蓮約20分，不含塞車及停靠站時間</span>
                 <div class="stop_item">
                     <div></div>
-                    <div>國泰醫院(建成路)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07328,121.661909" target="_blank">國泰醫院(建成路)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>崇義高中(忠孝東路)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07577099,121.6668948" target="_blank">崇義高中(忠孝東路)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>橋東</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.073617,121.666124" target="_blank">橋東</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>摩登家庭社區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07186389,121.6659388" target="_blank">摩登家庭社區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>茄苳路口</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.070588,121.665671" target="_blank">茄苳路口</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>汐止火車站(忠孝東路)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.067993,121.663358" target="_blank">汐止火車站(忠孝東路)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>秀峰高中(忠孝東路)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.066476,121.661871" target="_blank">秀峰高中(忠孝東路)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>黃昏市場</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.065446,121.659604" target="_blank">黃昏市場</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>汐止國中</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.067358,121.658841" target="_blank">汐止國中</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>汐止國小</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.066335,121.654564" target="_blank">汐止國小</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>汐科站北站</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06486,121.652863" target="_blank">汐科站北站</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>遠東科技中心</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.063921,121.650598" target="_blank">遠東科技中心</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>汐科站南站</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06295544,121.6470153" target="_blank">汐科站南站</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>昊天嶺</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.062079,121.644615" target="_blank">昊天嶺</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>樟樹一路口</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06245347,121.6416879" target="_blank">樟樹一路口</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>忠孝里</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.064858,121.642188" target="_blank">忠孝里</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>樟樹國小</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.066762,121.64249" target="_blank">樟樹國小</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>開山宮</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.068329,121.642713" target="_blank">開山宮</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>山光社區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.071151,121.641858" target="_blank">山光社區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>半島花園</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07381,121.6436" target="_blank">半島花園</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>樟江大橋</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.075856,121.644525" target="_blank">樟江大橋</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>伯爵山莊</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.075359,121.641733" target="_blank">伯爵山莊</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>伯爵山莊一</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07383644,121.6390103" target="_blank">伯爵山莊一</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>日月光社區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.075622,121.63741" target="_blank">日月光社區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>日月光社區D區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.074445,121.6368653" target="_blank">日月光社區D區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>日月光社區B區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.075509,121.637417" target="_blank">日月光社區B區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>濱湖大第</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07195441,121.6371164" target="_blank">濱湖大第</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>金龍湖</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07147645,121.6352014" target="_blank">金龍湖</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>湖東街口</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07141234,121.6334489" target="_blank">湖東街口</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>北峰寺</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.072844,121.63024" target="_blank">北峰寺</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>水蓮山莊</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.077647,121.629944" target="_blank">水蓮山莊</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>金龍里</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.072847,121.630142" target="_blank">北峰寺</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>民族六街口</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.071147,121.6310686" target="_blank">金龍里</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>北峰里(明峰街)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.070619,121.629333" target="_blank">民族六街口</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>金龍國小(明峰街)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.069422,121.6276293" target="_blank">北峰里(明峰街)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>經貿園區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.068229,121.625833" target="_blank">金龍國小(明峰街)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>北山里</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.066636,121.621237" target="_blank">經貿園區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>東湖國中</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.066708,121.618948" target="_blank">北山里</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>白馬山莊</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07287274,121.6194588" target="_blank">東湖國中</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>忠三街口(循環接續點)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.076956,121.623174" target="_blank">白馬山莊</a></div>
+                </div>
+                <div class="stop_item">
+                    <div></div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07844,121.624021" target="_blank">忠三街口(循環接續點)</a></div>
                 </div>
             </div>
 
@@ -773,175 +806,175 @@
                 <span>循環接續站點折返</span>
                 <div class="stop_item">
                     <div></div>
-                    <div>忠三街口(循環接續點)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07844,121.624021" target="_blank">忠三街口(循環接續點)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>白馬山莊</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.076956,121.623174" target="_blank">白馬山莊</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>東湖國中</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07264508,121.6193513" target="_blank">東湖國中</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>汐湖橋口</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.067322,121.617871" target="_blank">汐湖橋口</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>經貿園區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06660779,121.622098" target="_blank">經貿園區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>木南煤礦</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.066839,121.624809" target="_blank">木南煤礦</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>金龍國小(康寧街)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.067351,121.627395" target="_blank">金龍國小(康寧街)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>北峰里(康寧街)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.067712,121.629129" target="_blank">北峰里(康寧街)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>金龍市場</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.068367,121.629422" target="_blank">金龍市場</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>北峰里(中興路)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06922056,121.6286716" target="_blank">北峰里(中興路)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>民族六街口</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.0705,121.62945" target="_blank">民族六街口</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>金龍里</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.071008,121.631037" target="_blank">金龍里</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>北峰寺</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.072844,121.63024" target="_blank">北峰寺</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>水蓮山莊</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.077647,121.629944" target="_blank">水蓮山莊</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>北峰寺</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.072847,121.630142" target="_blank">北峰寺</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>湖東街口</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07129,121.63344" target="_blank">湖東街口</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>金龍湖</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.071398,121.634638" target="_blank">金龍湖</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>濱湖大第</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07184,121.63723" target="_blank">濱湖大第</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>日月光社區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.075622,121.63741" target="_blank">日月光社區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>日月光社區D區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.074445,121.6368653" target="_blank">日月光社區D區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>日月光社區B區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.075509,121.637417" target="_blank">日月光社區B區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>伯爵山莊一</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.073736,121.63923" target="_blank">伯爵山莊一</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>伯爵山莊</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.075192,121.641688" target="_blank">伯爵山莊</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>樟江大橋</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07573198,121.6447007" target="_blank">樟江大橋</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>半島花園</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.073991,121.643781" target="_blank">半島花園</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>福安宮</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.070234,121.641383" target="_blank">福安宮</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>厚德里(樟樹國小)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.068556,121.640833" target="_blank">樟樹國小</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>樟樹國際實中</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06528,121.63978" target="_blank">樟樹國際實中</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>忠孝里活動中心</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06315929,121.6397007" target="_blank">忠孝里活動中心</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>樟樹一路口</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.062424,121.641581" target="_blank">樟樹一路口</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>昊天嶺</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06217,121.6454" target="_blank">昊天嶺</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>汐科站南站</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.0628093,121.6472189" target="_blank">汐科站南站</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>汐科站北站</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.06417,121.65221" target="_blank">汐科站北站</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>汐止國小</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.066251,121.654922" target="_blank">汐止國小</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>汐止國中</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.067099,121.658766" target="_blank">汐止國中</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>黃昏市場</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.065399,121.659469" target="_blank">黃昏市場</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>秀峰高中(忠孝東路)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.066644,121.662214" target="_blank">秀峰高中(忠孝東路)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>汐止火車站(忠孝東路)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.067896,121.663421" target="_blank">汐止火車站(忠孝東路)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>茄苳路口</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.070489,121.665747" target="_blank">茄苳路口</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>摩登家庭社區</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07142401,121.6659554" target="_blank">摩登家庭社區</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>橋東</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.073527,121.666245" target="_blank">橋東</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>崇義高中(忠孝東路)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07598285,121.6670868" target="_blank">崇義高中(忠孝東路)</a></div>
                 </div>
                 <div class="stop_item">
                     <div></div>
-                    <div>國泰醫院(建成路)</div>
+                    <div><a href="https://www.google.com/maps/dir/?api=1&destination=25.07328,121.661909" target="_blank">國泰醫院(建成路)</a></div>
                 </div>
             </div>
         </div>
@@ -1146,6 +1179,535 @@
         <div>Copyright &copy; 2024 Steven Chang. All rights reserved.</div>
     </footer>
 
-    <script src="js/lhbs_114.js?v=1.0.31 defer"></script>
+    <script src="js/lhbs_114.js?v=1.0.33" defer></script>
+    <script>
+         const busStops = [
+            { name: "水蓮山莊", lat: 25.077647,  lng: 121.629944, direction: "to", dayType: "workday", busType: "社巴"},
+            { name: "金龍里", lat: 25.071147,  lng: 121.6310686, direction: "to", dayType: "workday", busType: "社巴"},
+            { name: "民族六街市場口", lat: 25.070619,  lng: 121.629333, direction: "to", dayType: "workday", busType: "社巴"},
+            { name: "金龍國小", lat: 25.068229,  lng: 121.625833, direction: "to", dayType: "workday", busType: "社巴"},
+            { name: "西陵科學園區", lat: 25.066636,  lng: 121.621237, direction: "to", dayType: "workday", busType: "社巴"},
+            { name: "捷運東湖站(南湖高中)", lat: 25.06720719,  lng: 121.6115736, direction: "to", dayType: "workday", busType: "社巴"},
+            { name: "捷運東湖站(南湖高中)", lat: 25.06720719,  lng: 121.6115736, direction: "from", dayType: "workday", busType: "社巴"},
+            { name: "五分社區", lat: 25.06868684,  lng: 121.6143563, direction: "from", dayType: "workday", busType: "社巴"},
+            { name: "東湖國小(東湖路126號前)", lat: 25.06814918,  lng: 121.6168687, direction: "from", dayType: "workday", busType: "社巴"},
+            { name: "西陵科學園區", lat: 25.06660779,  lng: 121.622098, direction: "from", dayType: "workday", busType: "社巴"},
+            { name: "金龍國小(OK便利商店前 - 明峰街281號)", lat: 25.06844712,  lng: 121.6265301, direction: "from", dayType: "workday", busType: "社巴"},
+            { name: "民族六街市場口", lat: 25.0705,  lng: 121.62945, direction: "from", dayType: "workday", busType: "社巴"},
+            { name: "金龍里(家樂福)", lat: 25.07100603,  lng: 121.6309914, direction: "from", dayType: "workday", busType: "社巴"},
+            { name: "水蓮山莊", lat: 25.077817,  lng: 121.630139, direction: "from", dayType: "workday", busType: "社巴"},
+            { name: "水蓮山莊", lat: 25.077647,  lng: 121.629944, direction: "to", dayType: "holiday", busType: "社巴"},
+            { name: "北峰寺", lat: 25.072847,  lng: 121.630142, direction: "to", dayType: "holiday", busType: "社巴"},
+            { name: "金龍里", lat: 25.071147,  lng: 121.6310686, direction: "to", dayType: "holiday", busType: "社巴"},
+            { name: "北峰里(明峰街)", lat: 25.069422,  lng: 121.6276293, direction: "to", dayType: "holiday", busType: "社巴"},
+            { name: "金龍國小(明峰街)", lat: 25.068229,  lng: 121.625833, direction: "to", dayType: "holiday", busType: "社巴"},
+            { name: "木南煤礦", lat: 25.067032,  lng: 121.62487, direction: "to", dayType: "holiday", busType: "社巴"},
+            { name: "經貿園區", lat: 25.06662284,  lng: 121.6212423, direction: "to", dayType: "holiday", busType: "社巴"},
+            { name: "北山里", lat: 25.066708,  lng: 121.618948, direction: "to", dayType: "holiday", busType: "社巴"},
+            { name: "東湖國小", lat: 25.068177,  lng: 121.61668, direction: "to", dayType: "holiday", busType: "社巴"},
+            { name: "五分社區", lat: 25.06876328,  lng: 121.6143084, direction: "to", dayType: "holiday", busType: "社巴"},
+            { name: "捷運東湖站(南湖高中)", lat: 25.067493,  lng: 121.6115022, direction: "to", dayType: "holiday", busType: "社巴"},
+            { name: "南港軟體園區北站", lat: 25.05968702,  lng: 121.6142045, direction: "to", dayType: "holiday", busType: "社巴"},
+            { name: "南港軟體園區南站", lat: 25.05655055,  lng: 121.6138914, direction: "to", dayType: "holiday", busType: "社巴"},
+            { name: "南港高工(南港路)", lat: 25.05496831,  lng: 121.6097763, direction: "to", dayType: "holiday", busType: "社巴"},
+            { name: "南港車站", lat: 25.05340065,  lng: 121.6069591, direction: "to", dayType: "holiday", busType: "社巴"},
+            { name: "南港行政中心", lat: 25.05437592,  lng: 121.607082, direction: "from", dayType: "holiday", busType: "社巴"},
+            { name: "南港高工(南港路)", lat: 25.05493375,  lng: 121.6106621, direction: "from", dayType: "holiday", busType: "社巴"},
+            { name: "南港軟體園區南站", lat: 25.05641711,  lng: 121.6141291, direction: "from", dayType: "holiday", busType: "社巴"},
+            { name: "南港軟體園區北站", lat: 25.05870571,  lng: 121.61428, direction: "from", dayType: "holiday", busType: "社巴"},
+            { name: "捷運東湖站(南湖高中)", lat: 25.06720719,  lng: 121.6115736, direction: "from", dayType: "holiday", busType: "社巴"},
+            { name: "五分社區", lat: 25.06868684,  lng: 121.6143563, direction: "from", dayType: "holiday", busType: "社巴"},
+            { name: "東湖國小", lat: 25.068103,  lng: 121.61672, direction: "from", dayType: "holiday", busType: "社巴"},
+            { name: "北山里", lat: 25.066676,  lng: 121.618528, direction: "from", dayType: "holiday", busType: "社巴"},
+            { name: "經貿園區", lat: 25.06660779,  lng: 121.622098, direction: "from", dayType: "holiday", busType: "社巴"},
+            { name: "木南煤礦", lat: 25.066839,  lng: 121.624809, direction: "from", dayType: "holiday", busType: "社巴"},
+            { name: "金龍國小(明峰街)", lat: 25.068008,  lng: 121.625826, direction: "from", dayType: "holiday", busType: "社巴"},
+            { name: "金龍里", lat: 25.071008,  lng: 121.631037, direction: "from", dayType: "holiday", busType: "社巴"},
+            { name: "北峰寺", lat: 25.072844,  lng: 121.63024, direction: "from", dayType: "holiday", busType: "社巴"},
+            { name: "水蓮山莊", lat: 25.077647,  lng: 121.629944, direction: "from", dayType: "holiday", busType: "社巴"},
+            { name: "水蓮山莊", lat: 25.077647,  lng: 121.629944, direction: "to", dayType: "workday", busType: "591"},
+            { name: "北峰寺", lat: 25.072847,  lng: 121.630142, direction: "to", dayType: "workday", busType: "591"},
+            { name: "金龍里", lat: 25.071147,  lng: 121.6310686, direction: "to", dayType: "workday", busType: "591"},
+            { name: "北峰里(明峰街)", lat: 25.069422,  lng: 121.6276293, direction: "to", dayType: "workday", busType: "591"},
+            { name: "金龍國小(明峰街)", lat: 25.068229,  lng: 121.625833, direction: "to", dayType: "workday", busType: "591"},
+            { name: "木南煤礦", lat: 25.067032,  lng: 121.62487, direction: "to", dayType: "workday", busType: "591"},
+            { name: "經貿園區", lat: 25.06662284,  lng: 121.6212423, direction: "to", dayType: "workday", busType: "591"},
+            { name: "北山里", lat: 25.066708,  lng: 121.618948, direction: "to", dayType: "workday", busType: "591"},
+            { name: "東湖國小", lat: 25.068177,  lng: 121.61668, direction: "to", dayType: "workday", busType: "591"},
+            { name: "五分社區", lat: 25.06876328,  lng: 121.6143084, direction: "to", dayType: "workday", busType: "591"},
+            { name: "捷運東湖站(南湖高中)", lat: 25.067493,  lng: 121.6115022, direction: "to", dayType: "workday", busType: "591"},
+            { name: "南港軟體園區北站", lat: 25.05968702,  lng: 121.6142045, direction: "to", dayType: "workday", busType: "591"},
+            { name: "南港軟體園區南站", lat: 25.05655055,  lng: 121.6138914, direction: "to", dayType: "workday", busType: "591"},
+            { name: "南港高工(南港路)", lat: 25.05496831,  lng: 121.6097763, direction: "to", dayType: "workday", busType: "591"},
+            { name: "南港車站", lat: 25.05340065,  lng: 121.6069591, direction: "to", dayType: "workday", busType: "591"},
+            { name: "南港行政中心", lat: 25.05437592,  lng: 121.607082, direction: "from", dayType: "workday", busType: "591"},
+            { name: "南港高工(南港路)", lat: 25.05493375,  lng: 121.6106621, direction: "from", dayType: "workday", busType: "591"},
+            { name: "南港軟體園區南站", lat: 25.05641711,  lng: 121.6141291, direction: "from", dayType: "workday", busType: "591"},
+            { name: "南港軟體園區北站", lat: 25.05870571,  lng: 121.61428, direction: "from", dayType: "workday", busType: "591"},
+            { name: "捷運東湖站(南湖高中)", lat: 25.06720719,  lng: 121.6115736, direction: "from", dayType: "workday", busType: "591"},
+            { name: "五分社區", lat: 25.06868684,  lng: 121.6143563, direction: "from", dayType: "workday", busType: "591"},
+            { name: "東湖國小", lat: 25.068103,  lng: 121.61672, direction: "from", dayType: "workday", busType: "591"},
+            { name: "北山里", lat: 25.066676,  lng: 121.618528, direction: "from", dayType: "workday", busType: "591"},
+            { name: "經貿園區", lat: 25.06660779,  lng: 121.622098, direction: "from", dayType: "workday", busType: "591"},
+            { name: "木南煤礦", lat: 25.066839,  lng: 121.624809, direction: "from", dayType: "workday", busType: "591"},
+            { name: "金龍國小(明峰街)", lat: 25.068008,  lng: 121.625826, direction: "from", dayType: "workday", busType: "591"},
+            { name: "金龍里", lat: 25.071008,  lng: 121.631037, direction: "from", dayType: "workday", busType: "591"},
+            { name: "北峰寺", lat: 25.072844,  lng: 121.63024, direction: "from", dayType: "workday", busType: "591"},
+            { name: "水蓮山莊", lat: 25.077647,  lng: 121.629944, direction: "from", dayType: "workday", busType: "591"},
+            { name: "水蓮山莊", lat: 25.077647,  lng: 121.629944, direction: "to", dayType: "holiday", busType: "591"},
+            { name: "北峰寺", lat: 25.072847,  lng: 121.630142, direction: "to", dayType: "holiday", busType: "591"},
+            { name: "金龍里", lat: 25.071147,  lng: 121.6310686, direction: "to", dayType: "holiday", busType: "591"},
+            { name: "北峰里(明峰街)", lat: 25.069422,  lng: 121.6276293, direction: "to", dayType: "holiday", busType: "591"},
+            { name: "金龍國小(明峰街)", lat: 25.068229,  lng: 121.625833, direction: "to", dayType: "holiday", busType: "591"},
+            { name: "木南煤礦", lat: 25.067032,  lng: 121.62487, direction: "to", dayType: "holiday", busType: "591"},
+            { name: "經貿園區", lat: 25.06662284,  lng: 121.6212423, direction: "to", dayType: "holiday", busType: "591"},
+            { name: "北山里", lat: 25.066708,  lng: 121.618948, direction: "to", dayType: "holiday", busType: "591"},
+            { name: "東湖國小", lat: 25.068177,  lng: 121.61668, direction: "to", dayType: "holiday", busType: "591"},
+            { name: "五分社區", lat: 25.06876328,  lng: 121.6143084, direction: "to", dayType: "holiday", busType: "591"},
+            { name: "捷運東湖站(南湖高中)", lat: 25.067493,  lng: 121.6115022, direction: "to", dayType: "holiday", busType: "591"},
+            { name: "南港軟體園區北站", lat: 25.05968702,  lng: 121.6142045, direction: "to", dayType: "holiday", busType: "591"},
+            { name: "南港軟體園區南站", lat: 25.05655055,  lng: 121.6138914, direction: "to", dayType: "holiday", busType: "591"},
+            { name: "南港高工(南港路)", lat: 25.05496831,  lng: 121.6097763, direction: "to", dayType: "holiday", busType: "591"},
+            { name: "南港車站", lat: 25.05340065,  lng: 121.6069591, direction: "to", dayType: "holiday", busType: "591"},
+            { name: "南港行政中心", lat: 25.05437592,  lng: 121.607082, direction: "from", dayType: "holiday", busType: "591"},
+            { name: "南港高工(南港路)", lat: 25.05493375,  lng: 121.6106621, direction: "from", dayType: "holiday", busType: "591"},
+            { name: "南港軟體園區南站", lat: 25.05641711,  lng: 121.6141291, direction: "from", dayType: "holiday", busType: "591"},
+            { name: "南港軟體園區北站", lat: 25.05870571,  lng: 121.61428, direction: "from", dayType: "holiday", busType: "591"},
+            { name: "捷運東湖站(南湖高中)", lat: 25.06720719,  lng: 121.6115736, direction: "from", dayType: "holiday", busType: "591"},
+            { name: "五分社區", lat: 25.06868684,  lng: 121.6143563, direction: "from", dayType: "holiday", busType: "591"},
+            { name: "東湖國小", lat: 25.068103,  lng: 121.61672, direction: "from", dayType: "holiday", busType: "591"},
+            { name: "北山里", lat: 25.066676,  lng: 121.618528, direction: "from", dayType: "holiday", busType: "591"},
+            { name: "經貿園區", lat: 25.06660779,  lng: 121.622098, direction: "from", dayType: "holiday", busType: "591"},
+            { name: "木南煤礦", lat: 25.066839,  lng: 121.624809, direction: "from", dayType: "holiday", busType: "591"},
+            { name: "金龍國小(明峰街)", lat: 25.068008,  lng: 121.625826, direction: "from", dayType: "holiday", busType: "591"},
+            { name: "金龍里", lat: 25.071008,  lng: 121.631037, direction: "from", dayType: "holiday", busType: "591"},
+            { name: "北峰寺", lat: 25.072844,  lng: 121.63024, direction: "from", dayType: "holiday", busType: "591"},
+            { name: "水蓮山莊", lat: 25.077647,  lng: 121.629944, direction: "from", dayType: "holiday", busType: "591"},
+            { name: "國泰醫院(建成路)", lat: 25.07328,  lng: 121.661909, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "崇義高中(忠孝東路)", lat: 25.07577099,  lng: 121.6668948, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "橋東", lat: 25.073617,  lng: 121.666124, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "摩登家庭社區", lat: 25.07186389,  lng: 121.6659388, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "茄苳路口", lat: 25.070588,  lng: 121.665671, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "汐止火車站(忠孝東路)", lat: 25.067993,  lng: 121.663358, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "秀峰高中(忠孝東路)", lat: 25.066476,  lng: 121.661871, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "黃昏市場", lat: 25.065446,  lng: 121.659604, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "汐止國中", lat: 25.067358,  lng: 121.658841, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "汐止國小", lat: 25.066335,  lng: 121.654564, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "汐科站北站", lat: 25.06486,  lng: 121.652863, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "遠東科技中心", lat: 25.063921,  lng: 121.650598, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "汐科站南站", lat: 25.06295544,  lng: 121.6470153, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "昊天嶺", lat: 25.062079,  lng: 121.644615, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "樟樹一路口", lat: 25.06245347,  lng: 121.6416879, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "忠孝里", lat: 25.064858,  lng: 121.642188, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "樟樹國小", lat: 25.066762,  lng: 121.64249, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "開山宮", lat: 25.068329,  lng: 121.642713, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "山光社區", lat: 25.071151,  lng: 121.641858, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "半島花園", lat: 25.07381,  lng: 121.6436, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "樟江大橋", lat: 25.075856,  lng: 121.644525, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "伯爵山莊", lat: 25.075359,  lng: 121.641733, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "伯爵山莊一", lat: 25.07383644,  lng: 121.6390103, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "日月光社區", lat: 25.075622,  lng: 121.63741, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "日月光社區D區", lat: 25.074445,  lng: 121.6368653, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "日月光社區B區", lat: 25.075509,  lng: 121.637417, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "濱湖大第", lat: 25.07195441,  lng: 121.6371164, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "金龍湖", lat: 25.07147645,  lng: 121.6352014, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "湖東街口", lat: 25.07141234,  lng: 121.6334489, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "北峰寺", lat: 25.072844,  lng: 121.63024, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "水蓮山莊", lat: 25.077647,  lng: 121.629944, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "北峰寺", lat: 25.072847,  lng: 121.630142, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "金龍里", lat: 25.071147,  lng: 121.6310686, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "民族六街口", lat: 25.070619,  lng: 121.629333, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "北峰里(明峰街)", lat: 25.069422,  lng: 121.6276293, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "金龍國小(明峰街)", lat: 25.068229,  lng: 121.625833, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "經貿園區", lat: 25.066636,  lng: 121.621237, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "汐湖橋口", lat: 25.067322,  lng: 121.617871, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "經貿園區", lat: 25.06660779,  lng: 121.622098, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "木南煤礦", lat: 25.066839,  lng: 121.624809, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "金龍國小(康寧街)", lat: 25.067351,  lng: 121.627395, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "北峰里(康寧街)", lat: 25.067712,  lng: 121.629129, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "金龍市場", lat: 25.068367,  lng: 121.629422, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "北峰里(中興路)", lat: 25.06922056,  lng: 121.6286716, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "民族六街口", lat: 25.0705,  lng: 121.62945, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "金龍里", lat: 25.071008,  lng: 121.631037, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "北峰寺", lat: 25.072844,  lng: 121.63024, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "水蓮山莊", lat: 25.077647,  lng: 121.629944, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "北峰寺", lat: 25.072847,  lng: 121.630142, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "湖東街口", lat: 25.07129,  lng: 121.63344, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "金龍湖", lat: 25.071398,  lng: 121.634638, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "濱湖大第", lat: 25.07184,  lng: 121.63723, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "日月光社區", lat: 25.075622,  lng: 121.63741, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "日月光社區D區", lat: 25.074445,  lng: 121.6368653, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "日月光社區B區", lat: 25.075509,  lng: 121.637417, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "伯爵山莊一", lat: 25.073736,  lng: 121.63923, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "伯爵山莊", lat: 25.075192,  lng: 121.641688, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "樟江大橋", lat: 25.07573198,  lng: 121.6447007, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "半島花園", lat: 25.073991,  lng: 121.643781, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "福安宮", lat: 25.070234,  lng: 121.641383, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "樟樹國小", lat: 25.068556,  lng: 121.640833, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "樟樹國際實中", lat: 25.06528,  lng: 121.63978, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "忠孝里活動中心", lat: 25.06315929,  lng: 121.6397007, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "樟樹一路口", lat: 25.062424,  lng: 121.641581, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "昊天嶺", lat: 25.06217,  lng: 121.6454, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "汐科站南站", lat: 25.0628093,  lng: 121.6472189, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "汐科站北站", lat: 25.06417,  lng: 121.65221, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "汐止國小", lat: 25.066251,  lng: 121.654922, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "汐止國中", lat: 25.067099,  lng: 121.658766, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "黃昏市場", lat: 25.065399,  lng: 121.659469, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "秀峰高中(忠孝東路)", lat: 25.066644,  lng: 121.662214, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "汐止火車站(忠孝東路)", lat: 25.067896,  lng: 121.663421, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "茄苳路口", lat: 25.070489,  lng: 121.665747, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "摩登家庭社區", lat: 25.07142401,  lng: 121.6659554, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "橋東", lat: 25.073527,  lng: 121.666245, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "崇義高中(忠孝東路)", lat: 25.07598285,  lng: 121.6670868, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "國泰醫院(建成路)", lat: 25.07328,  lng: 121.661909, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "國泰醫院(建成路)", lat: 25.07328,  lng: 121.661909, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "崇義高中(忠孝東路)", lat: 25.07577099,  lng: 121.6668948, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "橋東", lat: 25.073617,  lng: 121.666124, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "摩登家庭社區", lat: 25.07186389,  lng: 121.6659388, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "茄苳路口", lat: 25.070588,  lng: 121.665671, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "汐止火車站(忠孝東路)", lat: 25.067993,  lng: 121.663358, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "秀峰高中(忠孝東路)", lat: 25.066476,  lng: 121.661871, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "黃昏市場", lat: 25.065446,  lng: 121.659604, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "汐止國中", lat: 25.067358,  lng: 121.658841, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "汐止國小", lat: 25.066335,  lng: 121.654564, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "汐科站北站", lat: 25.06486,  lng: 121.652863, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "遠東科技中心", lat: 25.063921,  lng: 121.650598, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "汐科站南站", lat: 25.06295544,  lng: 121.6470153, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "昊天嶺", lat: 25.062079,  lng: 121.644615, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "樟樹一路口", lat: 25.06245347,  lng: 121.6416879, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "忠孝里", lat: 25.064858,  lng: 121.642188, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "樟樹國小", lat: 25.066762,  lng: 121.64249, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "開山宮", lat: 25.068329,  lng: 121.642713, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "山光社區", lat: 25.071151,  lng: 121.641858, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "半島花園", lat: 25.07381,  lng: 121.6436, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "樟江大橋", lat: 25.075856,  lng: 121.644525, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "伯爵山莊", lat: 25.075359,  lng: 121.641733, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "伯爵山莊一", lat: 25.07383644,  lng: 121.6390103, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "日月光社區", lat: 25.075622,  lng: 121.63741, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "日月光社區D區", lat: 25.074445,  lng: 121.6368653, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "日月光社區B區", lat: 25.075509,  lng: 121.637417, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "濱湖大第", lat: 25.07195441,  lng: 121.6371164, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "金龍湖", lat: 25.07147645,  lng: 121.6352014, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "湖東街口", lat: 25.07141234,  lng: 121.6334489, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "北峰寺", lat: 25.072844,  lng: 121.63024, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "水蓮山莊", lat: 25.077647,  lng: 121.629944, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "北峰寺", lat: 25.072847,  lng: 121.630142, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "金龍里", lat: 25.071147,  lng: 121.6310686, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "民族六街口", lat: 25.070619,  lng: 121.629333, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "北峰里(明峰街)", lat: 25.069422,  lng: 121.6276293, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "金龍國小(明峰街)", lat: 25.068229,  lng: 121.625833, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "經貿園區", lat: 25.066636,  lng: 121.621237, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "汐湖橋口", lat: 25.067322,  lng: 121.617871, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "經貿園區", lat: 25.06660779,  lng: 121.622098, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "木南煤礦", lat: 25.066839,  lng: 121.624809, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "金龍國小(康寧街)", lat: 25.067351,  lng: 121.627395, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "北峰里(康寧街)", lat: 25.067712,  lng: 121.629129, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "金龍市場", lat: 25.068367,  lng: 121.629422, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "北峰里(中興路)", lat: 25.06922056,  lng: 121.6286716, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "民族六街口", lat: 25.0705,  lng: 121.62945, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "金龍里", lat: 25.071008,  lng: 121.631037, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "北峰寺", lat: 25.072844,  lng: 121.63024, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "水蓮山莊", lat: 25.077647,  lng: 121.629944, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "北峰寺", lat: 25.072847,  lng: 121.630142, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "湖東街口", lat: 25.07129,  lng: 121.63344, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "金龍湖", lat: 25.071398,  lng: 121.634638, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "濱湖大第", lat: 25.07184,  lng: 121.63723, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "日月光社區", lat: 25.075622,  lng: 121.63741, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "日月光社區D區", lat: 25.074445,  lng: 121.6368653, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "日月光社區B區", lat: 25.075509,  lng: 121.637417, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "伯爵山莊一", lat: 25.073736,  lng: 121.63923, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "伯爵山莊", lat: 25.075192,  lng: 121.641688, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "樟江大橋", lat: 25.07573198,  lng: 121.6447007, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "半島花園", lat: 25.073991,  lng: 121.643781, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "福安宮", lat: 25.070234,  lng: 121.641383, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "樟樹國小", lat: 25.068556,  lng: 121.640833, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "樟樹國際實中", lat: 25.06528,  lng: 121.63978, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "忠孝里活動中心", lat: 25.06315929,  lng: 121.6397007, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "樟樹一路口", lat: 25.062424,  lng: 121.641581, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "昊天嶺", lat: 25.06217,  lng: 121.6454, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "汐科站南站", lat: 25.0628093,  lng: 121.6472189, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "汐科站北站", lat: 25.06417,  lng: 121.65221, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "汐止國小", lat: 25.066251,  lng: 121.654922, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "汐止國中", lat: 25.067099,  lng: 121.658766, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "黃昏市場", lat: 25.065399,  lng: 121.659469, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "秀峰高中(忠孝東路)", lat: 25.066644,  lng: 121.662214, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "汐止火車站(忠孝東路)", lat: 25.067896,  lng: 121.663421, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "茄苳路口", lat: 25.070489,  lng: 121.665747, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "摩登家庭社區", lat: 25.07142401,  lng: 121.6659554, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "橋東", lat: 25.073527,  lng: 121.666245, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "崇義高中(忠孝東路)", lat: 25.07598285,  lng: 121.6670868, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "國泰醫院(建成路)", lat: 25.07328,  lng: 121.661909, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "國泰醫院(建成路)", lat: 25.07328,  lng: 121.661909, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "崇義高中(忠孝東路)", lat: 25.07577099,  lng: 121.6668948, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "橋東", lat: 25.073617,  lng: 121.666124, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "摩登家庭社區", lat: 25.07186389,  lng: 121.6659388, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "茄苳路口", lat: 25.070588,  lng: 121.665671, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "汐止火車站(忠孝東路)", lat: 25.067993,  lng: 121.663358, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "秀峰高中(忠孝東路)", lat: 25.066476,  lng: 121.661871, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "黃昏市場", lat: 25.065446,  lng: 121.659604, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "汐止國中", lat: 25.067358,  lng: 121.658841, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "汐止國小", lat: 25.066335,  lng: 121.654564, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "汐科站北站", lat: 25.06486,  lng: 121.652863, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "遠東科技中心", lat: 25.063921,  lng: 121.650598, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "汐科站南站", lat: 25.06295544,  lng: 121.6470153, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "昊天嶺", lat: 25.062079,  lng: 121.644615, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "樟樹一路口", lat: 25.06245347,  lng: 121.6416879, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "忠孝里", lat: 25.064858,  lng: 121.642188, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "樟樹國小", lat: 25.066762,  lng: 121.64249, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "開山宮", lat: 25.068329,  lng: 121.642713, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "山光社區", lat: 25.071151,  lng: 121.641858, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "半島花園", lat: 25.07381,  lng: 121.6436, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "樟江大橋", lat: 25.075856,  lng: 121.644525, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "伯爵山莊", lat: 25.075359,  lng: 121.641733, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "伯爵山莊一", lat: 25.07383644,  lng: 121.6390103, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "日月光社區", lat: 25.075622,  lng: 121.63741, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "日月光社區D區", lat: 25.074445,  lng: 121.6368653, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "日月光社區B區", lat: 25.075509,  lng: 121.637417, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "濱湖大第", lat: 25.07195441,  lng: 121.6371164, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "金龍湖", lat: 25.07147645,  lng: 121.6352014, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "湖東街口", lat: 25.07141234,  lng: 121.6334489, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "北峰寺", lat: 25.072844,  lng: 121.63024, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "水蓮山莊", lat: 25.077647,  lng: 121.629944, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "北峰寺", lat: 25.072847,  lng: 121.630142, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "金龍里", lat: 25.071147,  lng: 121.6310686, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "民族六街口", lat: 25.070619,  lng: 121.629333, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "北峰里(明峰街)", lat: 25.069422,  lng: 121.6276293, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "金龍國小(明峰街)", lat: 25.068229,  lng: 121.625833, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "經貿園區", lat: 25.066636,  lng: 121.621237, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "北山里", lat: 25.066708,  lng: 121.618948, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "東湖國中", lat: 25.07287274,  lng: 121.6194588, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "白馬山莊", lat: 25.076956,  lng: 121.623174, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "忠三街口", lat: 25.07844,  lng: 121.624021, direction: "to", dayType: "workday", busType: "F913"},
+            { name: "白馬山莊", lat: 25.076956,  lng: 121.623174, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "東湖國中", lat: 25.07264508,  lng: 121.6193513, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "汐湖橋口", lat: 25.067322,  lng: 121.617871, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "經貿園區", lat: 25.06660779,  lng: 121.622098, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "木南煤礦", lat: 25.066839,  lng: 121.624809, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "金龍國小(康寧街)", lat: 25.067351,  lng: 121.627395, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "北峰里(康寧街)", lat: 25.067712,  lng: 121.629129, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "金龍市場", lat: 25.068367,  lng: 121.629422, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "北峰里(中興路)", lat: 25.06922056,  lng: 121.6286716, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "民族六街口", lat: 25.0705,  lng: 121.62945, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "金龍里", lat: 25.071008,  lng: 121.631037, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "北峰寺", lat: 25.072844,  lng: 121.63024, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "水蓮山莊", lat: 25.077647,  lng: 121.629944, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "北峰寺", lat: 25.072847,  lng: 121.630142, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "湖東街口", lat: 25.07129,  lng: 121.63344, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "金龍湖", lat: 25.071398,  lng: 121.634638, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "濱湖大第", lat: 25.07184,  lng: 121.63723, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "日月光社區", lat: 25.075622,  lng: 121.63741, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "日月光社區D區", lat: 25.074445,  lng: 121.6368653, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "日月光社區B區", lat: 25.075509,  lng: 121.637417, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "伯爵山莊一", lat: 25.073736,  lng: 121.63923, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "伯爵山莊", lat: 25.075192,  lng: 121.641688, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "樟江大橋", lat: 25.07573198,  lng: 121.6447007, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "半島花園", lat: 25.073991,  lng: 121.643781, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "福安宮", lat: 25.070234,  lng: 121.641383, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "樟樹國小", lat: 25.068556,  lng: 121.640833, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "樟樹國際實中", lat: 25.06528,  lng: 121.63978, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "忠孝里活動中心", lat: 25.06315929,  lng: 121.6397007, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "樟樹一路口", lat: 25.062424,  lng: 121.641581, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "昊天嶺", lat: 25.06217,  lng: 121.6454, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "汐科站南站", lat: 25.0628093,  lng: 121.6472189, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "汐科站北站", lat: 25.06417,  lng: 121.65221, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "汐止國小", lat: 25.066251,  lng: 121.654922, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "汐止國中", lat: 25.067099,  lng: 121.658766, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "黃昏市場", lat: 25.065399,  lng: 121.659469, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "秀峰高中(忠孝東路)", lat: 25.066644,  lng: 121.662214, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "汐止火車站(忠孝東路)", lat: 25.067896,  lng: 121.663421, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "茄苳路口", lat: 25.070489,  lng: 121.665747, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "摩登家庭社區", lat: 25.07142401,  lng: 121.6659554, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "橋東", lat: 25.073527,  lng: 121.666245, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "崇義高中(忠孝東路)", lat: 25.07598285,  lng: 121.6670868, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "國泰醫院(建成路)", lat: 25.07328,  lng: 121.661909, direction: "from", dayType: "workday", busType: "F913"},
+            { name: "國泰醫院(建成路)", lat: 25.07328,  lng: 121.661909, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "崇義高中(忠孝東路)", lat: 25.07577099,  lng: 121.6668948, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "橋東", lat: 25.073617,  lng: 121.666124, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "摩登家庭社區", lat: 25.07186389,  lng: 121.6659388, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "茄苳路口", lat: 25.070588,  lng: 121.665671, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "汐止火車站(忠孝東路)", lat: 25.067993,  lng: 121.663358, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "秀峰高中(忠孝東路)", lat: 25.066476,  lng: 121.661871, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "黃昏市場", lat: 25.065446,  lng: 121.659604, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "汐止國中", lat: 25.067358,  lng: 121.658841, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "汐止國小", lat: 25.066335,  lng: 121.654564, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "汐科站北站", lat: 25.06486,  lng: 121.652863, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "遠東科技中心", lat: 25.063921,  lng: 121.650598, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "汐科站南站", lat: 25.06295544,  lng: 121.6470153, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "昊天嶺", lat: 25.062079,  lng: 121.644615, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "樟樹一路口", lat: 25.06245347,  lng: 121.6416879, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "忠孝里", lat: 25.064858,  lng: 121.642188, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "樟樹國小", lat: 25.066762,  lng: 121.64249, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "開山宮", lat: 25.068329,  lng: 121.642713, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "山光社區", lat: 25.071151,  lng: 121.641858, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "半島花園", lat: 25.07381,  lng: 121.6436, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "樟江大橋", lat: 25.075856,  lng: 121.644525, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "伯爵山莊", lat: 25.075359,  lng: 121.641733, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "伯爵山莊一", lat: 25.07383644,  lng: 121.6390103, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "日月光社區", lat: 25.075622,  lng: 121.63741, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "日月光社區D區", lat: 25.074445,  lng: 121.6368653, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "日月光社區B區", lat: 25.075509,  lng: 121.637417, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "濱湖大第", lat: 25.07195441,  lng: 121.6371164, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "金龍湖", lat: 25.07147645,  lng: 121.6352014, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "湖東街口", lat: 25.07141234,  lng: 121.6334489, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "北峰寺", lat: 25.072844,  lng: 121.63024, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "水蓮山莊", lat: 25.077647,  lng: 121.629944, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "北峰寺", lat: 25.072847,  lng: 121.630142, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "金龍里", lat: 25.071147,  lng: 121.6310686, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "民族六街口", lat: 25.070619,  lng: 121.629333, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "北峰里(明峰街)", lat: 25.069422,  lng: 121.6276293, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "金龍國小(明峰街)", lat: 25.068229,  lng: 121.625833, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "經貿園區", lat: 25.066636,  lng: 121.621237, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "北山里", lat: 25.066708,  lng: 121.618948, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "東湖國中", lat: 25.07287274,  lng: 121.6194588, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "白馬山莊", lat: 25.076956,  lng: 121.623174, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "忠三街口", lat: 25.07844,  lng: 121.624021, direction: "to", dayType: "holiday", busType: "F913"},
+            { name: "白馬山莊", lat: 25.076956,  lng: 121.623174, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "東湖國中", lat: 25.07264508,  lng: 121.6193513, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "汐湖橋口", lat: 25.067322,  lng: 121.617871, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "經貿園區", lat: 25.06660779,  lng: 121.622098, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "木南煤礦", lat: 25.066839,  lng: 121.624809, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "金龍國小(康寧街)", lat: 25.067351,  lng: 121.627395, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "北峰里(康寧街)", lat: 25.067712,  lng: 121.629129, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "金龍市場", lat: 25.068367,  lng: 121.629422, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "北峰里(中興路)", lat: 25.06922056,  lng: 121.6286716, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "民族六街口", lat: 25.0705,  lng: 121.62945, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "金龍里", lat: 25.071008,  lng: 121.631037, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "北峰寺", lat: 25.072844,  lng: 121.63024, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "水蓮山莊", lat: 25.077647,  lng: 121.629944, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "北峰寺", lat: 25.072847,  lng: 121.630142, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "湖東街口", lat: 25.07129,  lng: 121.63344, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "金龍湖", lat: 25.071398,  lng: 121.634638, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "濱湖大第", lat: 25.07184,  lng: 121.63723, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "日月光社區", lat: 25.075622,  lng: 121.63741, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "日月光社區D區", lat: 25.074445,  lng: 121.6368653, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "日月光社區B區", lat: 25.075509,  lng: 121.637417, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "伯爵山莊一", lat: 25.073736,  lng: 121.63923, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "伯爵山莊", lat: 25.075192,  lng: 121.641688, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "樟江大橋", lat: 25.07573198,  lng: 121.6447007, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "半島花園", lat: 25.073991,  lng: 121.643781, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "福安宮", lat: 25.070234,  lng: 121.641383, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "樟樹國小", lat: 25.068556,  lng: 121.640833, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "樟樹國際實中", lat: 25.06528,  lng: 121.63978, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "忠孝里活動中心", lat: 25.06315929,  lng: 121.6397007, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "樟樹一路口", lat: 25.062424,  lng: 121.641581, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "昊天嶺", lat: 25.06217,  lng: 121.6454, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "汐科站南站", lat: 25.0628093,  lng: 121.6472189, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "汐科站北站", lat: 25.06417,  lng: 121.65221, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "汐止國小", lat: 25.066251,  lng: 121.654922, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "汐止國中", lat: 25.067099,  lng: 121.658766, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "黃昏市場", lat: 25.065399,  lng: 121.659469, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "秀峰高中(忠孝東路)", lat: 25.066644,  lng: 121.662214, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "汐止火車站(忠孝東路)", lat: 25.067896,  lng: 121.663421, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "茄苳路口", lat: 25.070489,  lng: 121.665747, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "摩登家庭社區", lat: 25.07142401,  lng: 121.6659554, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "橋東", lat: 25.073527,  lng: 121.666245, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "崇義高中(忠孝東路)", lat: 25.07598285,  lng: 121.6670868, direction: "from", dayType: "holiday", busType: "F913"},
+            { name: "國泰醫院(建成路)", lat: 25.07328,  lng: 121.661909, direction: "from", dayType: "holiday", busType: "F913"},
+            // 可以在這裡添加其他的巴士停靠點
+        ];
+
+        function getUserLocation() {
+            // 判斷是否在 localhost 環境
+            if (window.location.hostname === "localhost") {
+                // 使用測試座標 (例如：水蓮山莊的經緯度)
+                const testLat = 25.048;  // 測試座標的緯度
+                const testLng = 121.666;  // 測試座標的經度
+                console.log("使用測試座標：", testLat, testLng);
+                findNearestBusStop(testLat, testLng);
+            } else if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else { 
+                alert("這個瀏覽器不支援地理位置。");
+            }
+        }
+
+        function showPosition(position) {
+            const userLat = position.coords.latitude;
+            const userLng = position.coords.longitude;
+            console.log("實際位置：", userLat, userLng);
+            findNearestBusStop(userLat, userLng);
+        }
+
+        function showError(error) {
+            console.error("獲取位置時發生錯誤：", error);
+            alert("無法獲取您的位置。");
+        }
+
+        function findNearestBusStop(userLat, userLng) {
+            if (userLat && userLng) { 
+                const direction = document.querySelector('input[name="tripType"]:checked').value;
+
+                let nearestStop = null;
+                let minDistance = Infinity;
+
+                const dayType = document.getElementById('dayType').value; // 抓取使用者選的日別
+
+                busStops.forEach(stop => {
+                    if (stop.direction === direction && stop.dayType === dayType) { // 加入 dayType 判斷
+                        const distance = haversineDistance(userLat, userLng, stop.lat, stop.lng);
+                        if (distance < minDistance) {
+                            minDistance = distance;
+                            nearestStop = stop;
+                        }
+                    }
+                });
+
+                if (nearestStop) {
+                    displayNearestStop(nearestStop, minDistance);
+                } else {
+                    console.warn("找不到符合條件的停靠站 (dayType: " + dayType + ", direction: " + direction + ")");
+                    document.getElementById('nearestStop').innerHTML = `<p>⚠️ 找不到符合「${dayType === 'workday' ? '平日' : '假日'}」${direction === 'to' ? '去程' : '回程'} 的停靠站</p>`;
+                }
+            } else {
+                console.warn("無法獲取有效的位置");
+            }
+        }
+
+        function haversineDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371; // 地球半徑 (公里)
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = 
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+                Math.sin(dLon / 2) * Math.sin(dLon / 2); 
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); 
+            return R * c; // 返回距離 (公里)
+        }
+
+        function displayNearestStop(nearestStop, distance) {
+            // 获取用户选择的假日/平日和去程/回程
+            const dayTypeSelect = document.getElementById('dayType');
+            const selectedDayType = dayTypeSelect.value; // 'workday' 或 'holiday'
+            
+            const tripTypeRadios = document.getElementsByName('tripType');
+            let selectedTripType = '去程'; // 默认值
+            for (const radio of tripTypeRadios) {
+                if (radio.checked) {
+                    selectedTripType = radio.value === 'to' ? '去程' : '回程'; // 将值转换为中文显示
+                    break;
+                }
+            }
+
+            const nearestStopContainer = document.getElementById('nearestStop');
+            nearestStopContainer.innerHTML = `
+                <p>距離您 ${selectedDayType === 'workday' ? '平日' : '假日'}${selectedTripType} 最近的 停站點是：</p>
+                <p><i class="fa-solid fa-location-arrow"></i> <a href="https://www.google.com/maps/dir/?api=1&destination=${nearestStop.lat},${nearestStop.lng}" target="_blank">${nearestStop.name}</a> (${nearestStop.busType})</p>`;
+                // 距離約 ${distance.toFixed(2)} 公里
+        }
+
+        function updateNearestStop() {
+            console.log("用戶切換了去程或回程選項，並可能更改了日子類型，重新獲取最近停靠站...");
+            getUserLocation(); // 重新調用獲取位置的函數
+        }
+
+        // 當頁面加載完成時，調用獲取位置的函數
+        window.onload = function() {
+            console.log("頁面加載完成，嘗試獲取用戶位置...");
+            getUserLocation();
+        };
+
+        updateNearestStop();
+    </script>
 </body>
 </html>
