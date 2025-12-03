@@ -1616,8 +1616,9 @@
                 findNearestBusStop(testLat, testLng);
             } else if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPosition, showError);
-            } else { 
-                alert("這個瀏覽器不支援地理位置。");
+            } else {
+                console.log("這個瀏覽器不支援地理位置。");
+                //alert("這個瀏覽器不支援地理位置。");
             }
         }
 
@@ -1630,7 +1631,7 @@
 
         function showError(error) {
             console.error("獲取位置時發生錯誤：", error);
-            alert("無法獲取您的位置。");
+            //alert("無法獲取您的位置。");
         }
 
         function findNearestBusStop(userLat, userLng) {
