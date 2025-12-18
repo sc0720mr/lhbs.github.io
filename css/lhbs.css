@@ -152,7 +152,7 @@ input.tabTrigger[id]:checked + label i{ transform-style: preserve-3d; animation:
 /*社巴及公車站點*/
 .bus_stops_container{padding: 8px 14px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center;}
 .anchor_busstops{display: flex; flex-direction: row; flex-wrap: nowrap; align-items: center; justify-content: center; }
-.anchor_busstops a{display: inline-block; margin: 8px 8px 0; padding: 3px 10px; outline:none;}
+.anchor_busstops a{display: inline-block; margin: 8px 8px 0; padding: 3px 8px; outline:none;}
 .anchor_busstops a:link, .anchor_busstops a:visited, .anchor_busstops a:hover{color:#4285f4;}
 .anchor_busstops a:active{text-decoration: none;}
 .bus_stops{margin: 0 auto 20px; display: flex; flex-direction: column; color: #333; width: calc(320px - 28px);}
