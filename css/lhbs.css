@@ -102,7 +102,7 @@ footer{padding: 8px 20px; color: #696969; text-align: center;}
 
 @keyframes marquee {
     from {
-        transform: translateX(0%);
+        transform: translateX(20%);
     }
     to {
         transform: translateX(-100%);
