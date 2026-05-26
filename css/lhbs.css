@@ -226,6 +226,105 @@ footer{font-size: 0.6875rem;} /*11px*/
 .about_container h3{font-size: 1.125rem;} /*15px*/
 .about_container h4{font-size: 0.9375rem;} /*15px*/
 
+/* AD */
+.bus-ad-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    animation: fadeIn 0.3s ease;
+}
+
+.bus-ad-box {
+    width: 90%;
+    max-width: 260px;
+    background: white;
+    border-radius: 22px;
+    padding: 30px 25px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+    animation: popup 0.35s ease;
+}
+
+.bus-ad-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    border: none;
+    background: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.bus-ad-icon {
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+.bus-ad-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #00796B;
+    margin-bottom: 18px;
+    line-height: 1.4;
+}
+
+.bus-ad-content {
+    font-size: 24px;
+    line-height: 1.8;
+    color: #222;
+    font-weight: 600;
+}
+
+.bus-ad-tip {
+    margin-top: 18px;
+    color: #777;
+    font-size: 16px;
+}
+
+.bus-ad-btn {
+    margin-top: 24px;
+    width: 100%;
+    border: none;
+    background: #009688;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.bus-ad-btn:hover {
+    background: #00796B;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes popup {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 /* 專門針對小型手機的樣式 */
 @media (max-width: 320px) {
     label[for="tab1"]{margin-left: 4% !important;}
