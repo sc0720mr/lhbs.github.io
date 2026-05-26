@@ -50,9 +50,6 @@ function shouldShowBusAd() {
 // ===== 頁面載入 =====
 window.addEventListener('load', () => {
 
-    // 先隱藏
-    document.getElementById('busAdOverlay').style.display = 'none';
-
     // 判斷是否顯示
     if (shouldShowBusAd()) {
 
