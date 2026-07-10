@@ -306,6 +306,17 @@ footer{font-size: 0.6875rem;} /*11px*/
     background: #00796B;
 }
 
+.time-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;   /* 上下10px，左右20px */
+    margin: 8px 0;
+}
+
+.time-list span {
+    width: 70px;
+}
+
 .alert_text_red{
     color: red;
 }
