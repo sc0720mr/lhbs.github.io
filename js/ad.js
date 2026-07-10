@@ -3,7 +3,7 @@
 const BUS_AD_KEY = 'bus_ad_closed_time';
 
 // 幾小時後再次顯示
-const SHOW_AGAIN_HOURS = 24;
+const SHOW_AGAIN_HOURS = 0;
 
 
 
@@ -17,7 +17,7 @@ function closeBusAd() {
     );
 
     // 隱藏廣告
-    document.getElementById('busAdOverlay').style.display = 'none';
+    //document.getElementById('busAdOverlay').style.display = 'none';
 }
 
 
