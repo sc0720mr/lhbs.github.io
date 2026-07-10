@@ -17,7 +17,7 @@ function closeBusAd() {
     );
 
     // 隱藏廣告
-    //document.getElementById('busAdOverlay').style.display = 'none';
+    document.getElementById('busAdOverlay').style.display = 'none';
 }
 
 
