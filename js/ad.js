@@ -3,9 +3,7 @@
 const BUS_AD_KEY = 'bus_ad_closed_time';
 
 // 幾小時後再次顯示
-const SHOW_AGAIN_HOURS = 0;
-
-
+const SHOW_AGAIN_HOURS = 24;
 
 // ===== 關閉廣告 =====
 function closeBusAd() {
@@ -19,7 +17,6 @@ function closeBusAd() {
     // 隱藏廣告
     document.getElementById('busAdOverlay').style.display = 'none';
 }
-
 
 // ===== 是否需要顯示廣告 =====
 function shouldShowBusAd() {
@@ -44,8 +41,6 @@ function shouldShowBusAd() {
     // 超過設定時數 → 顯示
     return diffHours >= SHOW_AGAIN_HOURS;
 }
-
-
 
 // ===== 頁面載入 =====
 window.addEventListener('load', () => {
